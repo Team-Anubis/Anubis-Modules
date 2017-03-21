@@ -1,0 +1,54 @@
+@using DotNetNuke.Common;
+@using System;
+@using DotNetNuke.Entities.Modules;
+@using System.Data.SqlClient;
+@using System.Diagnostics;
+@using System.Data;
+@using System.Data.Common;
+
+@*Copyright (c) 2017 by Anubis *@
+
+<body>
+@{
+
+var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+var selectQueryString = "SELECT * FROM Questions ORDER BY Question_ID";
+
+SqlCommand command = new SqlCommand(selectQueryString, database);
+database.Open();
+var databaseName = database.Database;
+SqlDataReader reader = command.ExecuteReader();
+
+  <h1>Your Readiness Color Below</h1>
+
+  try
+  {
+    while (reader.Read())
+    {
+      if(reader[0] == DBNull.Value)
+      {
+        <p>words</p>
+      }
+      else
+      {
+        <h3>Want to See if you are PetReady and your Readiness color?
+        Complete the questionnaire by pressing the icon below.</h3>
+        <p style="text-align: center;"><a href="/Account/Questionnaire"><img alt="" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+
+      }
+    }
+
+  }
+  catch (InvalidCastException e)
+{
+  <h3>Error</h3>
+}
+
+  finally
+  {
+    reader.Close();
+  }
+
+}
+
+</body>
