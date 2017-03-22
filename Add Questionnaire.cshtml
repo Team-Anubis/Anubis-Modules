@@ -9,94 +9,102 @@
 @*Copyright (c) 2017 by Anubis *@
 
 @{
-  var Question = "";
-  var Question_help_text = "";
-  var Question_type = "";
-  var Question_required = "";
-  var Question_option_1 = "";
-  var Question_option_2 = "";
-  var Question_option_3 = "";
-  var Question_option_4 = "";
-  var Question_option_5 = "";
-  var Question_option_6 = "";
-  var Question_option_7 = "";
-  var Question_option_8 = "";
+
+  var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+  database.Open();
+  var databaseName = database.Database;
+
+  var Question = Request.Form["Question"];
+  var Question_help_text = Request.Form["Question_help_text"];
+  var Question_type =  Request.Form["Question_type"];
+  var Question_required = Request.Form["Question_required"];
+  var Question_option_1 = Request.Form["Question_option_1"];
+  var Question_option_2 = Request.Form["Question_option_2"];
+  var Question_option_3 = Request.Form["Question_option_3"];
+  var Question_option_4 = Request.Form["Question_option_4"];
+  var Question_option_5 = Request.Form["Question_option_5"];
+  var Question_option_6 = Request.Form["Question_option_6"];
+  var Question_option_7 = Request.Form["Question_option_7"];
+  var Question_option_8 = Request.Form["Question_option_8"];
 
   if(IsPost){
-    var database = Database.Open("petready");
-    var insertCommand = "INSERT INTO Questions (Question,Question_type,Question_required,Question_help_text,Question_option_1,Question_option_2,Question_option_3,Question_option_4,Question_option_5,Question_option_6,Question_option_7,Question_option_8)  VALUES(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12)";
-    database.Execute(insertCommand,Question,Question_type,Question_required,Question_help_text,Question_option_1,Question_option_2,Question_option_3,Question_option_4,Question_option_5,Question_option_6,Question_option_7,Question_option_8);
-    Response.Redirect("~/Modify-Questionnaire");
+    var insertCommand = "INSERT INTO Questions (Question,Question_type,Question_required,Question_help_text,Question_option_1,Question_option_2,Question_option_3,Question_option_4,Question_option_5,Question_option_6,Question_option_7,Question_option_8)  VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)";
+    //database.Execute(insertCommand, Question, Question_help_text, Question_type, Question_required, Question_option_1, Question_option_2, Question_option_3, Question_option_4, Question_option_5, Question_option_6, Question_option_7, Question_option_8, );
+
+    <h1>@databaseName</h1>
+
+
+
   }
 }
 
 <body>
-  <form method="POST">
+  <form method="post">
     <fieldset>
-      <h2>Add A New Question To The Questionnaire</h2>
+      <h2>Add A New Question</h2>
       <div>
         <label for="Question">Question Text:</label>
-        <input type="text" name="Question" value="@Request.Form["Question"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
  	    <div>
         <label for="Question">Question Help Text:</label>
-        <input type="text" name="Question_help_text" value="@Request.Form["Question_help_text"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_help_text" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_type">Question Type:</label>
-        <input type="radio" name="Question_type" value="@Request.Form["Question_type"]" />radio
-        <input type="radio" name="Question_type" value="@Request.Form["Question_type"]" />checkbox
+        <input type="radio" name="Question_type" value="" />radio
+        <input type="radio" name="Question_type" value="" />checkbox
         <br></br>
       </div>
       <div>
         <label for="Question_type">Question Required:</label>
-        <input type="radio" name="Question_required" value="@Request.Form["Question_required"]" />false
-        <input type="radio" name="Question_required" value="@Request.Form["Question_required"]" />true
+        <input type="radio" name="Question_required" value="" />false
+        <input type="radio" name="Question_required" value="" />true
         <br></br>
       </div>
       <div>
         <label for="Question_option_1">Question option 1:</label>
-        <input type="text" name="Question_option_1" value="@Request.Form["Question_option_1"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_1" value=NULL size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_2">Question option 2:</label>
-        <input type="text" name="Question_option_2" value="@Request.Form["Question_option_2"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_2" value=NULL size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_3">Question option 3:</label>
-        <input type="text" name="Question_option_3" value="@Request.Form["Question_option_3"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_3" value=NULL size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_4">Question option 4:</label>
-        <input type="text" name="Question_option_4" value="@Request.Form["Question_option_4"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_4" value=NULL size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_5">Question option 5:</label>
-        <input type="text" name="Question_option_5" value="@Request.Form["Question_option_5"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_5" value=NULL size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_6">Question option 6:</label>
-        <input type="text" name="Question_option_6" value="@Request.Form["Question_option_6"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_6" value=NULL size="100%" maxlenght="255"/>
         <br></br>
 	  </div>
       <div>
         <label for="Question_option_6">Question option 7:</label>
-        <input type="text" name="Question_option_7" value="@Request.Form["Question_option_7"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_7" value=NULL size="100%" maxlenght="255"/>
         <br></br>
 	  </div>
       <div>
         <label for="Question_option_6">Question option 8:</label>
-        <input type="text" name="Question_option_8" value="@Request.Form["Question_option_8"]" size="100%" maxlenght="255"/>
+        <input type="text" name="Question_option_8" value=NULL size="100%" maxlenght="255"/>
         <br></br>
 	  </div>
-    <input type="submit" name="Add"/>
+    <input type="submit" name="Insert" value="Add Question"/>
     </feldset>
   </form>
 </body>
