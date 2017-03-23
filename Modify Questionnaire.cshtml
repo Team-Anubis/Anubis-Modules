@@ -1,0 +1,145 @@
+@using DotNetNuke.Common;
+@using System;
+@using DotNetNuke.Entities.Modules;
+@using System.Data.SqlClient;
+@using System.Diagnostics;
+@using System.Data;
+@using System.Data.Common;
+
+@*Copyright (c) 2017 by Anubis *@
+
+<body>
+  <form method="post" id="Question_modify">
+  <h2>Select a question to modify</h2>
+  <select name="questions">
+
+    @{
+        var questions = Request.Form["questions"];
+        string selection = questions;
+        var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+        var selectAllString = "SELECT * FROM Questions ORDER BY Question_ID";
+        var viewSelectString = "SELECT * FROM Questions WHERE Question_ID = 5";
+
+        SqlCommand command = new SqlCommand(selectAllString, database);
+        database.Open();
+        var databaseName = database.Database;
+        SqlDataReader reader = command.ExecuteReader();
+
+        try
+        {
+          while (reader.Read())
+          {
+
+            <option value="@reader[0]">@reader[0]: @reader[1]</option>
+
+          }
+
+        }
+
+        finally
+        {
+          // Always call Close when done reading.
+          reader.Close();
+
+        }
+      }
+      </select>
+      <input type="submit" class="btn btn-success btn-lg" name="submit" value="Update" />
+      <input type="reset" class="btn btn-danger btn-lg" name="reset" value="Remove" />
+
+</form>
+
+<form method="">
+
+@{
+  SqlCommand command2 = new SqlCommand(viewSelectString, database);
+  var databaseName2 = database.Database;
+  SqlDataReader reader2 = command2.ExecuteReader();
+  string testing = "Testing " + "Database name: " + databaseName2 + "Questions: " + questions + "Selection: " + selection;
+  <h2>@testing</h2>
+  <h2>Update Question</h2>
+
+  if(get)
+    {
+      try
+      {
+        while (reader2.Read())
+        {
+          <label for="Question">Question Text:</label>
+          <br></br>
+          <input type="text" name="Question" value="@reader2[1]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question">Question Help Text:</label>
+          <br></br>
+          <input type="text" name="Question_help_text" value="@reader2[4]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_type">Question Type:</label>
+          <br></br>
+          <input type="text" name="Question_type" value="@reader2[2]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_required">Question Required:</label>
+          <br></br>
+          <input type="text" name="Question_required" value="@reader2[3]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_1">Question option 1:</label>
+          <br></br>
+          <input type="text" name="Question_option_1" value="@reader2[5]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_2">Question option 2:</label>
+          <br></br>
+          <input type="text" name="Question_option_2" value="@reader2[6]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_3">Question option 3:</label>
+          <br></br>
+          <input type="text" name="Question_option_3" value="@reader2[7]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_4">Question option 4:</label>
+          <br></br>
+          <input type="text" name="Question_option_4" value="@reader2[8]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_5">Question option 5:</label>
+          <br></br>
+          <input type="text" name="Question_option_5" value="@reader2[9]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_6">Question option 6:</label>
+          <br></br>
+          <input type="text" name="Question_option_6" value="@reader2[10]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_6">Question option 7:</label>
+          <br></br>
+          <input type="text" name="Question_option_7" value="@reader2[11]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <label for="Question_option_6">Question option 8:</label>
+          <br></br>
+          <input type="text" name="Question_option_8" value="@reader2[12]" size="100%" maxlenght="255"/>
+          <br></br>
+
+          <input type="submit" name="Update" value="Update Question"/>
+        }
+      }
+      finally
+      {
+      // Always call Close when done reading.
+      reader2.Close();
+
+      }
+      if(IsPost)
+      {
+        <h1>Submitted</h1>
+      }
+    }
+  }
+
+</form>
+
+</body>
