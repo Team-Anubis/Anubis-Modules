@@ -14,11 +14,18 @@
   <select name="questions">
 
     @{
+
+
         var questions = Request.Form["questions"];
         string selection = questions;
+
         var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
-        var selectAllString = "SELECT * FROM Questions ORDER BY Question_ID";
-        var viewSelectString = "SELECT * FROM Questions WHERE Question_ID = 5";
+
+        string AllString = "SELECT * FROM Questions ORDER BY Question_ID";
+        var selectAllString = AllString;
+
+        string SelectString = "SELECT * FROM Questions WHERE Question_ID = 5";
+        var viewSelectString = SelectString;
 
         SqlCommand command = new SqlCommand(selectAllString, database);
         database.Open();
@@ -44,8 +51,8 @@
         }
       }
       </select>
-      <input type="submit" class="btn btn-success btn-lg" name="submit" value="Update" />
-      <input type="reset" class="btn btn-danger btn-lg" name="reset" value="Remove" />
+      <br></br>
+      <input type="submit" class="btn btn-success btn-lg" name="submit" value="Select" />
 
 </form>
 
@@ -55,12 +62,10 @@
   SqlCommand command2 = new SqlCommand(viewSelectString, database);
   var databaseName2 = database.Database;
   SqlDataReader reader2 = command2.ExecuteReader();
-  string testing = "Testing " + "Database name: " + databaseName2 + "Questions: " + questions + "Selection: " + selection;
-  <h2>@testing</h2>
-  <h2>Update Question</h2>
 
-  if(get)
+  if(IsPost)
     {
+    <h2>Update Question</h2>
       try
       {
         while (reader2.Read())
@@ -131,11 +136,6 @@
       {
       // Always call Close when done reading.
       reader2.Close();
-
-      }
-      if(IsPost)
-      {
-        <h1>Submitted</h1>
       }
     }
   }
