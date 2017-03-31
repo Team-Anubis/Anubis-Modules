@@ -8,103 +8,203 @@
 
 @*Copyright (c) 2017 by Anubis *@
 
-@{
-
-  var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
-  database.Open();
-  var databaseName = database.Database;
-
-  var Question = Request.Form["Question"];
-  var Question_help_text = Request.Form["Question_help_text"];
-  var Question_type =  Request.Form["Question_type"];
-  var Question_required = Request.Form["Question_required"];
-  var Question_option_1 = Request.Form["Question_option_1"];
-  var Question_option_2 = Request.Form["Question_option_2"];
-  var Question_option_3 = Request.Form["Question_option_3"];
-  var Question_option_4 = Request.Form["Question_option_4"];
-  var Question_option_5 = Request.Form["Question_option_5"];
-  var Question_option_6 = Request.Form["Question_option_6"];
-  var Question_option_7 = Request.Form["Question_option_7"];
-  var Question_option_8 = Request.Form["Question_option_8"];
-
-  if(IsPost){
-    var insertCommand = "INSERT INTO Questions (Question,Question_type,Question_required,Question_help_text,Question_option_1,Question_option_2,Question_option_3,Question_option_4,Question_option_5,Question_option_6,Question_option_7,Question_option_8)  VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)";
-    //database.Execute(insertCommand, Question, Question_help_text, Question_type, Question_required, Question_option_1, Question_option_2, Question_option_3, Question_option_4, Question_option_5, Question_option_6, Question_option_7, Question_option_8, );
-
-    <h1>@databaseName</h1>
-
-
-
-  }
-}
-
 <body>
   <form method="post">
     <fieldset>
       <h2>Add A New Question</h2>
       <div>
         <label for="Question">Question Text:</label>
-        <input type="text" name="Question" value="" size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question" value="" size="100%" maxlenght="255" required />
+        <br></br>
+      </div>
+      <div>
+        <label for="Question">Question Help Title:</label>
+        <br></br>
+        <input type="text" name="Question_help_title" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
  	    <div>
         <label for="Question">Question Help Text:</label>
+        <br></br>
         <input type="text" name="Question_help_text" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_type">Question Type:</label>
-        <input type="radio" name="Question_type" value="" />radio
-        <input type="radio" name="Question_type" value="" />checkbox
+        <br></br>
+        <input type="radio" name="Question_type" value="radio" required/>radio
+        <input type="radio" name="Question_type" value="checkbox" required/>checkbox
         <br></br>
       </div>
       <div>
         <label for="Question_type">Question Required:</label>
-        <input type="radio" name="Question_required" value="" />false
-        <input type="radio" name="Question_required" value="" />true
+        <br></br>
+        <input type="radio" name="Question_required" value="required" required/>true
+        <input type="radio" name="Question_required" value="" required/>false
         <br></br>
       </div>
       <div>
         <label for="Question_option_1">Question option 1:</label>
-        <input type="text" name="Question_option_1" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_1" Value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_2">Question option 2:</label>
-        <input type="text" name="Question_option_2" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_2" Value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_3">Question option 3:</label>
-        <input type="text" name="Question_option_3" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_3" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_4">Question option 4:</label>
-        <input type="text" name="Question_option_4" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_4" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_5">Question option 5:</label>
-        <input type="text" name="Question_option_5" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_5" value="" size="100%" maxlenght="255"/>
         <br></br>
       </div>
       <div>
         <label for="Question_option_6">Question option 6:</label>
-        <input type="text" name="Question_option_6" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_6" value="" size="100%" maxlenght="255"/>
         <br></br>
 	  </div>
       <div>
         <label for="Question_option_6">Question option 7:</label>
-        <input type="text" name="Question_option_7" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_7" value="" size="100%" maxlenght="255"/>
         <br></br>
 	  </div>
       <div>
         <label for="Question_option_6">Question option 8:</label>
-        <input type="text" name="Question_option_8" value=NULL size="100%" maxlenght="255"/>
+        <br></br>
+        <input type="text" name="Question_option_8" value="" size="100%" maxlenght="255"/>
         <br></br>
 	  </div>
-    <input type="submit" name="Insert" value="Add Question"/>
+    <input type="submit" class="btn btn-success btn-lg" name="Insert" value="Add Question"/>
     </feldset>
   </form>
+
+
+
+@{
+
+  string Question = "";
+  string Question_help_text = "";
+  string Question_help_title = "";
+  string Question_type = "";
+  string Question_required = "";
+  string Question_option_1 = "";
+  string Question_option_2 = "";
+  string Question_option_3 = "";
+  string Question_option_4 = "";
+  string Question_option_5 = "";
+  string Question_option_6 = "";
+  string Question_option_7 = "";
+  string Question_option_8 = "";
+
+  if(IsPost){
+
+    Question = Request.Form["Question"];
+    Question_help_text = Request.Form["Question_help_text"];
+    Question_help_title = Request.Form["Question_help_title"];
+    Question_type =  Request.Form["Question_type"];
+    Question_required = Request.Form["Question_required"];
+    Question_option_1 = Request.Form["Question_option_1"];
+    Question_option_2 = Request.Form["Question_option_2"];
+    Question_option_3 = Request.Form["Question_option_3"];
+    Question_option_4 = Request.Form["Question_option_4"];
+    Question_option_5 = Request.Form["Question_option_5"];
+    Question_option_6 = Request.Form["Question_option_6"];
+    Question_option_7 = Request.Form["Question_option_7"];
+    Question_option_8 = Request.Form["Question_option_8"];
+
+    <h3>You just added</h3>
+    <p>
+      Question Text: @Question <br></br>
+      Question type: @Question_type <br></br>
+      Question required: @Question_required <br></br>
+      Question help title: @Question_help_title <br></br>
+      Question help text: @Question_help_text <br></br>
+      Answer Option: @Question_option_1 <br></br>
+      Answer Option: @Question_option_2 <br></br>
+      Answer Option: @Question_option_3 <br></br>
+      Answer Option: @Question_option_4 <br></br>
+      Answer Option: @Question_option_5 <br></br>
+      Answer Option: @Question_option_6 <br></br>
+      Answer Option: @Question_option_7 <br></br>
+      Answer Option: @Question_option_8 <br></br>
+    </p>
+
+
+    try
+    {
+
+      SqlConnection database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+      var databaseName = database.Database;
+      SqlCommand cmd = new SqlCommand();
+      SqlDataReader reader;
+
+      // cmd.Parameters.AddWithValue("@1", Question);
+      // cmd.Parameters.AddWithValue("@2", Question_type);
+      // cmd.Parameters.AddWithValue("@3", Question_required);
+      // cmd.Parameters.AddWithValue("@4", Question_help_title);
+      // cmd.Parameters.AddWithValue("@5", Question_help_text);
+      //cmd.Parameters.AddWithValue("@6", Question_option_1);
+      // cmd.Parameters.AddWithValue("@7", Question_option_2);
+      // cmd.Parameters.AddWithValue("@8", Question_option_3);
+      // cmd.Parameters.AddWithValue("@9", Question_option_4);
+      // cmd.Parameters.AddWithValue("@10", Question_option_5);
+      // cmd.Parameters.AddWithValue("@11", Question_option_6);
+      // cmd.Parameters.AddWithValue("@12", Question_option_7);
+      // cmd.Parameters.AddWithValue("@13", Question_option_8);
+      cmd.Parameters.Add(new SqlParameter("@1", string.IsNullOrEmpty(Question) ? (object)DBNull.Value : Question));
+      cmd.Parameters.Add(new SqlParameter("@2", string.IsNullOrEmpty(Question_type) ? (object)DBNull.Value : Question_type));
+      cmd.Parameters.Add(new SqlParameter("@3", string.IsNullOrEmpty(Question_required) ? (object)DBNull.Value : Question_required));
+      cmd.Parameters.Add(new SqlParameter("@4", string.IsNullOrEmpty(Question_help_title) ? (object)DBNull.Value : Question_help_title));
+      cmd.Parameters.Add(new SqlParameter("@5", string.IsNullOrEmpty(Question_help_text) ? (object)DBNull.Value : Question_help_text));
+      cmd.Parameters.Add(new SqlParameter("@6", string.IsNullOrEmpty(Question_option_1) ? (object)DBNull.Value : Question_option_1));
+      cmd.Parameters.Add(new SqlParameter("@7", string.IsNullOrEmpty(Question_option_2) ? (object)DBNull.Value : Question_option_2));
+      cmd.Parameters.Add(new SqlParameter("@8", string.IsNullOrEmpty(Question_option_3) ? (object)DBNull.Value : Question_option_3));
+      cmd.Parameters.Add(new SqlParameter("@9", string.IsNullOrEmpty(Question_option_4) ? (object)DBNull.Value : Question_option_4));
+      cmd.Parameters.Add(new SqlParameter("@10", string.IsNullOrEmpty(Question_option_5) ? (object)DBNull.Value : Question_option_5));
+      cmd.Parameters.Add(new SqlParameter("@11", string.IsNullOrEmpty(Question_option_6) ? (object)DBNull.Value : Question_option_6));
+      cmd.Parameters.Add(new SqlParameter("@12", string.IsNullOrEmpty(Question_option_7) ? (object)DBNull.Value : Question_option_7));
+      cmd.Parameters.Add(new SqlParameter("@13", string.IsNullOrEmpty(Question_option_8) ? (object)DBNull.Value : Question_option_8));
+
+      cmd.CommandText = "INSERT INTO Questions (Question, Question_type, Question_required, Question_help_title, Question_help_text, Question_option_1, Question_option_2, Question_option_3, Question_option_4, Question_option_5, Question_option_6, Question_option_7, Question_option_8) VALUES (@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13)";
+
+
+      cmd.CommandType = CommandType.Text;
+
+
+      cmd.Connection = database;
+
+      database.Open();
+
+      reader = cmd.ExecuteReader();
+
+      database.Close();
+
+    }
+    finally
+    {
+
+    }
+
+  }
+}
+
+
 </body>
