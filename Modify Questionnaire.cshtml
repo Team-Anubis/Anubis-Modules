@@ -9,27 +9,23 @@
 @*Copyright (c) 2017 by Anubis *@
 
 <body>
-  <form method="post" id="Question_modify">
-  <h2>Select a question to modify</h2>
-  <select name="questions">
+  <form>
+    <h2>Select a question to modify</h2>
+    <select name="questions">
 
-    @{
-
-
-        var questions = Request.Form["questions"];
-        string selection = questions;
+      @{
+        string selection = Request.Form["questions"];
 
         var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
 
-        string AllString = "SELECT * FROM Questions ORDER BY Question_ID";
-        var selectAllString = AllString;
-
-        string SelectString = "SELECT * FROM Questions WHERE Question_ID = 5";
-        var viewSelectString = SelectString;
+        var selectAllString = "SELECT * FROM Questions ORDER BY Question_ID";
 
         SqlCommand command = new SqlCommand(selectAllString, database);
+
         database.Open();
+
         var databaseName = database.Database;
+
         SqlDataReader reader = command.ExecuteReader();
 
         try
@@ -47,99 +43,206 @@
         {
           // Always call Close when done reading.
           reader.Close();
+          database.Close();
 
         }
       }
-      </select>
-      <br></br>
-      <input type="submit" class="btn btn-success btn-lg" name="submit" value="Select" />
+    </select>
+    <br></br>
+    <button  class="btn btn-success btn-lg" onserverclick="Button_Click" runat="server"/>Select</button>
+  </form>
 
-</form>
+  <br></br>
+  <h3>Selected Question: @selection</h3>
 
-<form method="">
 
-@{
-  SqlCommand command2 = new SqlCommand(viewSelectString, database);
-  var databaseName2 = database.Database;
-  SqlDataReader reader2 = command2.ExecuteReader();
+  <form method="post">
+    @{
+      SqlCommand cmd = new SqlCommand();
 
-  if(IsPost)
-    {
-    <h2>Update Question</h2>
+      SqlDataReader reader2;
+
+      cmd.Parameters.Add(new SqlParameter("@1", string.IsNullOrEmpty(selection) ? (object)DBNull.Value : selection));
+
+      cmd.CommandText = "SELECT * FROM Questions WHERE Question_ID = @1";
+
+      cmd.CommandType = CommandType.Text;
+
+      database.Open();
+
+      cmd.Connection = database;
+
+      reader2 = cmd.ExecuteReader();
+
       try
       {
-        while (reader2.Read())
-        {
+        while(reader2.Read()){
           <label for="Question">Question Text:</label>
           <br></br>
-          <input type="text" name="Question" value="@reader2[1]" size="100%" maxlenght="255"/>
-          <br></br>
-          <label for="Question">Question Help Text:</label>
-          <br></br>
-          <input type="text" name="Question_help_text" value="@reader2[4]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question" value="@reader2[1]" size="100%" maxlenght="255" required/>
           <br></br>
 
-          <label for="Question_type">Question Type:</label>
+          <label for="Question_help_title">Question Help Title:</label>
           <br></br>
-          <input type="text" name="Question_type" value="@reader2[2]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_help_title" value="@reader2[4]"  size="100%" maxlenght="255"/>
           <br></br>
 
-          <label for="Question_required">Question Required:</label>
+          <label for="Question_help_text">Question Help Text:</label>
           <br></br>
-          <input type="text" name="Question_required" value="@reader2[3]" size="100%" maxlenght="255"/>
+          <input type="textarea" name="Question_help_text" value="@reader2[5]" size="100%"/>
           <br></br>
 
           <label for="Question_option_1">Question option 1:</label>
           <br></br>
-          <input type="text" name="Question_option_1" value="@reader2[5]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_1" value="@reader2[6]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_2">Question option 2:</label>
           <br></br>
-          <input type="text" name="Question_option_2" value="@reader2[6]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_2" value="@reader2[7]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_3">Question option 3:</label>
           <br></br>
-          <input type="text" name="Question_option_3" value="@reader2[7]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_3" value="@reader2[8]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_4">Question option 4:</label>
           <br></br>
-          <input type="text" name="Question_option_4" value="@reader2[8]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_4" value="@reader2[9]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_5">Question option 5:</label>
           <br></br>
-          <input type="text" name="Question_option_5" value="@reader2[9]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_5" value="@reader2[10]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_6">Question option 6:</label>
           <br></br>
-          <input type="text" name="Question_option_6" value="@reader2[10]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_6" value="@reader2[11]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_6">Question option 7:</label>
           <br></br>
-          <input type="text" name="Question_option_7" value="@reader2[11]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_7" value="@reader2[12]"  size="100%" maxlenght="255"/>
           <br></br>
 
           <label for="Question_option_6">Question option 8:</label>
           <br></br>
-          <input type="text" name="Question_option_8" value="@reader2[12]" size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_8" value="@reader2[13]"  size="100%" maxlenght="255"/>
           <br></br>
 
-          <input type="submit" name="Update" value="Update Question"/>
+          <input type="submit"  class="btn btn-success btn-lg" name="Update" value="Update Question"/>
+
         }
+
+    }
+    finally
+    {
+      // Always call Close when done reading.
+      database.Close();
+      reader2.Close();
+
+    }
+
+    string Question = "";
+    string Question_help_text = "";
+    string Question_help_title = "";
+    string Question_option_1 = "";
+    string Question_option_2 = "";
+    string Question_option_3 = "";
+    string Question_option_4 = "";
+    string Question_option_5 = "";
+    string Question_option_6 = "";
+    string Question_option_7 = "";
+    string Question_option_8 = "";
+
+    <h1>@Question</h1>
+
+    if(IsPost)
+    {
+      Question = Request.Form["Question"];
+      Question_help_text = Request.Form["Question_help_text"];
+      Question_help_title = Request.Form["Question_help_title"];
+      Question_option_1 = Request.Form["Question_option_1"];
+      Question_option_2 = Request.Form["Question_option_2"];
+      Question_option_3 = Request.Form["Question_option_3"];
+      Question_option_4 = Request.Form["Question_option_4"];
+      Question_option_5 = Request.Form["Question_option_5"];
+      Question_option_6 = Request.Form["Question_option_6"];
+      Question_option_7 = Request.Form["Question_option_7"];
+      Question_option_8 = Request.Form["Question_option_8"];
+
+      <h3>You just added</h3>
+      <p>
+        Question Text: @Question <br></br>
+        Question help title: @Question_help_title <br></br>
+        Question help text: @Question_help_text <br></br>
+        Answer Option: @Question_option_1 <br></br>
+        Answer Option: @Question_option_2 <br></br>
+        Answer Option: @Question_option_3 <br></br>
+        Answer Option: @Question_option_4 <br></br>
+        Answer Option: @Question_option_5 <br></br>
+        Answer Option: @Question_option_6 <br></br>
+        Answer Option: @Question_option_7 <br></br>
+        Answer Option: @Question_option_8 <br></br>
+      </p>
+
+      try
+      {
+        <p>@databaseName</p>
+        <p>@Question</p>
+
+        SqlCommand cmd2 = new SqlCommand();
+
+        SqlDataReader reader3;
+
+        // cmd2.Parameters.AddWithValue("@1", Question);
+        // cmd2.Parameters.AddWithValue("@2", Question_help_title);
+        // cmd2.Parameters.AddWithValue("@3", Question_help_text);
+        // cmd2.Parameters.AddWithValue("@4", Question_option_1);
+        // cmd2.Parameters.AddWithValue("@5", Question_option_2);
+        // cmd2.Parameters.AddWithValue("@6", Question_option_3);
+        // cmd2.Parameters.AddWithValue("@7", Question_option_4);
+        // cmd2.Parameters.AddWithValue("@8", Question_option_5);
+        // cmd2.Parameters.AddWithValue("@9", Question_option_6);
+        // cmd2.Parameters.AddWithValue("@10", Question_option_7);
+        // cmd2.Parameters.AddWithValue("@11", Question_option_8);
+
+        cmd2.Parameters.Add(new SqlParameter("@1", string.IsNullOrEmpty(Question) ? (object)DBNull.Value : Question));
+        cmd2.Parameters.Add(new SqlParameter("@2", string.IsNullOrEmpty(Question_help_title) ? (object)DBNull.Value : Question_help_title));
+        cmd2.Parameters.Add(new SqlParameter("@3", string.IsNullOrEmpty(Question_help_text) ? (object)DBNull.Value : Question_help_text));
+        cmd2.Parameters.Add(new SqlParameter("@4", string.IsNullOrEmpty(Question_option_1) ? (object)DBNull.Value : Question_option_1));
+        cmd2.Parameters.Add(new SqlParameter("@5", string.IsNullOrEmpty(Question_option_2) ? (object)DBNull.Value : Question_option_2));
+        cmd2.Parameters.Add(new SqlParameter("@6", string.IsNullOrEmpty(Question_option_3) ? (object)DBNull.Value : Question_option_3));
+        cmd2.Parameters.Add(new SqlParameter("@7", string.IsNullOrEmpty(Question_option_4) ? (object)DBNull.Value : Question_option_4));
+        cmd2.Parameters.Add(new SqlParameter("@8", string.IsNullOrEmpty(Question_option_5) ? (object)DBNull.Value : Question_option_5));
+        cmd2.Parameters.Add(new SqlParameter("@9", string.IsNullOrEmpty(Question_option_6) ? (object)DBNull.Value : Question_option_6));
+        cmd2.Parameters.Add(new SqlParameter("@10", string.IsNullOrEmpty(Question_option_7) ? (object)DBNull.Value : Question_option_7));
+        cmd2.Parameters.Add(new SqlParameter("@11", string.IsNullOrEmpty(Question_option_8) ? (object)DBNull.Value : Question_option_8));
+        cmd2.Parameters.Add(new SqlParameter("@12", string.IsNullOrEmpty(selection) ? (object)DBNull.Value : selection));
+
+        cmd2.CommandText = "UPDATE Questions SET Question = @1, Question_help_title = @2, Question_help_text = @3, Question_option_1 = @4, Question_option_2 = @5, Question_option_3 = @6, Question_option_4 = @7, Question_option_5 = @8, Question_option_6 = @9, Question_option_7 = @10, Question_option_8 = @11 WHERE (Question_ID = @12)";
+
+        cmd2.CommandType = CommandType.Text;
+
+        cmd2.Connection = database;
+
+        database.Open();
+
+        reader3 = cmd2.ExecuteReader();
+
+        database.Close();
+
       }
+
       finally
       {
-      // Always call Close when done reading.
-      reader2.Close();
+
       }
     }
   }
 
-</form>
+  </form>
 
 </body>
