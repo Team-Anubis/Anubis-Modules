@@ -1,0 +1,83 @@
+@using DotNetNuke.Common;
+@using System;
+@using DotNetNuke.Entities.Modules;
+@using System.Data.SqlClient;
+@using System.Diagnostics;
+@using System.Data;
+@using System.Data.Common;
+
+@*Copyright (c) 2017 by Anubis *@
+
+<body>
+  <form>
+    <h2>Select a question to delete</h2>
+    <select name="selection_id">
+
+      @{
+
+        string selection = Request.Form["selection_id"];
+
+        var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+
+        var selectAllString = "SELECT * FROM Questions ORDER BY Question_ID";
+
+        SqlCommand command = new SqlCommand(selectAllString, database);
+
+        database.Open();
+
+        var databaseName = database.Database;
+
+        SqlDataReader reader = command.ExecuteReader();
+
+        try
+        {
+          while (reader.Read())
+          {
+
+            <option value="@reader[0]">@reader[0]: @reader[1]</option>
+
+          }
+
+        }
+
+        finally
+        {
+          // Always call Close when done reading.
+          reader.Close();
+
+        }
+      }
+    </select>
+    <br></br>
+    <button type="submit" onserverclick="Button_Click" runat="server" class="btn btn-danger btn-lg" />Remove</button>
+  </form>
+<h1>@selection</h1>
+
+@{
+  if(IsPost)
+  {
+    try
+    {
+      SqlCommand cmd = new SqlCommand();
+
+      SqlDataReader reader2;
+
+      cmd.Parameters.Add(new SqlParameter("@1", string.IsNullOrEmpty(selection) ? (object)DBNull.Value : selection));
+
+      cmd.CommandText = "DELETE FROM Questions WHERE Question_ID = @1";
+
+      cmd.CommandType = CommandType.Text;
+
+      cmd.Connection = database;
+
+      reader2 = cmd.ExecuteReader();
+
+      database.Close();
+
+    }
+    finally
+    {
+    }
+  }
+}
+</body>
