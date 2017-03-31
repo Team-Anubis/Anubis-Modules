@@ -11,10 +11,11 @@
 <body>
   <form>
     <h2>Select a question to modify</h2>
-    <select name="questions">
+    <select name="selection_id">
 
       @{
-        string selection = Request.Form["questions"];
+
+        string selection = Request.Form["selection_id"];
 
         var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
 
@@ -43,7 +44,6 @@
         {
           // Always call Close when done reading.
           reader.Close();
-          database.Close();
 
         }
       }
@@ -68,8 +68,6 @@
 
       cmd.CommandType = CommandType.Text;
 
-      database.Open();
-
       cmd.Connection = database;
 
       reader2 = cmd.ExecuteReader();
@@ -77,6 +75,9 @@
       try
       {
         while(reader2.Read()){
+
+          <input type="hidden" name="current_selection" value="@reader2[0]" size="100%" />
+
           <label for="Question">Question Text:</label>
           <br></br>
           <input type="text" name="Question" value="@reader2[1]" size="100%" maxlenght="255" required/>
@@ -140,11 +141,14 @@
     finally
     {
       // Always call Close when done reading.
-      database.Close();
+
       reader2.Close();
 
     }
+  }
+  @{
 
+    string current_selection = "";
     string Question = "";
     string Question_help_text = "";
     string Question_help_title = "";
@@ -161,6 +165,7 @@
 
     if(IsPost)
     {
+      current_selection = Request.Form["current_selection"];
       Question = Request.Form["Question"];
       Question_help_text = Request.Form["Question_help_text"];
       Question_help_title = Request.Form["Question_help_title"];
@@ -173,41 +178,12 @@
       Question_option_7 = Request.Form["Question_option_7"];
       Question_option_8 = Request.Form["Question_option_8"];
 
-      <h3>You just added</h3>
-      <p>
-        Question Text: @Question <br></br>
-        Question help title: @Question_help_title <br></br>
-        Question help text: @Question_help_text <br></br>
-        Answer Option: @Question_option_1 <br></br>
-        Answer Option: @Question_option_2 <br></br>
-        Answer Option: @Question_option_3 <br></br>
-        Answer Option: @Question_option_4 <br></br>
-        Answer Option: @Question_option_5 <br></br>
-        Answer Option: @Question_option_6 <br></br>
-        Answer Option: @Question_option_7 <br></br>
-        Answer Option: @Question_option_8 <br></br>
-      </p>
-
       try
       {
-        <p>@databaseName</p>
-        <p>@Question</p>
 
         SqlCommand cmd2 = new SqlCommand();
 
         SqlDataReader reader3;
-
-        // cmd2.Parameters.AddWithValue("@1", Question);
-        // cmd2.Parameters.AddWithValue("@2", Question_help_title);
-        // cmd2.Parameters.AddWithValue("@3", Question_help_text);
-        // cmd2.Parameters.AddWithValue("@4", Question_option_1);
-        // cmd2.Parameters.AddWithValue("@5", Question_option_2);
-        // cmd2.Parameters.AddWithValue("@6", Question_option_3);
-        // cmd2.Parameters.AddWithValue("@7", Question_option_4);
-        // cmd2.Parameters.AddWithValue("@8", Question_option_5);
-        // cmd2.Parameters.AddWithValue("@9", Question_option_6);
-        // cmd2.Parameters.AddWithValue("@10", Question_option_7);
-        // cmd2.Parameters.AddWithValue("@11", Question_option_8);
 
         cmd2.Parameters.Add(new SqlParameter("@1", string.IsNullOrEmpty(Question) ? (object)DBNull.Value : Question));
         cmd2.Parameters.Add(new SqlParameter("@2", string.IsNullOrEmpty(Question_help_title) ? (object)DBNull.Value : Question_help_title));
@@ -220,15 +196,13 @@
         cmd2.Parameters.Add(new SqlParameter("@9", string.IsNullOrEmpty(Question_option_6) ? (object)DBNull.Value : Question_option_6));
         cmd2.Parameters.Add(new SqlParameter("@10", string.IsNullOrEmpty(Question_option_7) ? (object)DBNull.Value : Question_option_7));
         cmd2.Parameters.Add(new SqlParameter("@11", string.IsNullOrEmpty(Question_option_8) ? (object)DBNull.Value : Question_option_8));
-        cmd2.Parameters.Add(new SqlParameter("@12", string.IsNullOrEmpty(selection) ? (object)DBNull.Value : selection));
+        cmd2.Parameters.Add(new SqlParameter("@12", string.IsNullOrEmpty(current_selection) ? (object)DBNull.Value : current_selection));
 
         cmd2.CommandText = "UPDATE Questions SET Question = @1, Question_help_title = @2, Question_help_text = @3, Question_option_1 = @4, Question_option_2 = @5, Question_option_3 = @6, Question_option_4 = @7, Question_option_5 = @8, Question_option_6 = @9, Question_option_7 = @10, Question_option_8 = @11 WHERE (Question_ID = @12)";
 
         cmd2.CommandType = CommandType.Text;
 
         cmd2.Connection = database;
-
-        database.Open();
 
         reader3 = cmd2.ExecuteReader();
 
