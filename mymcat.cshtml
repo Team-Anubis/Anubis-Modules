@@ -9,10 +9,9 @@
 @*Copyright (c) 2017 by Anubis *@
 
 <body>
-<form method="POST" action="">
+<form method="POST" action="" id="questions">
 
 @{
-  int readiness = 0;
   string question_1 = "";
   string question_2 = "";
   string question_3 = "";
@@ -30,14 +29,12 @@
   string question_15 = "";
   string question_16 = "";
   string question_17 = "";
-  string question_18 = "";
-  string question_19 = "";
-  string question_20 = "";
-  string question_21 = "";
-  string question_22 = "";
+  int green = 0;
+  int purple = 0;
+  int orange = 0;
 
   var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
-  var selectQueryString = "SELECT * FROM Questions ORDER BY Question_ID";
+  var selectQueryString = "SELECT * FROM Cat_Questions ORDER BY Cat_Questions_ID";
 
   SqlCommand command = new SqlCommand(selectQueryString, database);
   database.Open();
@@ -122,15 +119,12 @@
     }
     if (IsPost)
     {
-
       try
       {
         //gets values from form
         question_1 = Request.Form["question_1"];
-          //not a questions for determining readiness
 
         question_2 = Request.Form["question_2"];
-          //not a questions for determining readiness
 
         question_3 = Request.Form["question_3"];
 
@@ -143,7 +137,6 @@
         question_7 = Request.Form["question_7"];
 
         question_8 = Request.Form["question_8"];
-        //not a questions for determining readiness
 
         question_9 = Request.Form["question_9"];
 
@@ -152,144 +145,28 @@
         question_11 = Request.Form["question_11"];
 
         question_12 = Request.Form["question_12"];
-        //not a questions for determining readiness
 
         question_13 = Request.Form["question_13"];
-        //not a questions for determining readiness
 
         question_14 = Request.Form["question_14"];
 
         question_15 = Request.Form["question_15"];
-        //not a questions for determining readiness
 
         question_16 = Request.Form["question_16"];
-        //not a questions for determining readiness
 
         question_17 = Request.Form["question_17"];
-        //not a questions for determining readiness
 
-        question_18 = Request.Form["question_18"];
-        //not a questions for determining readiness
-
-        question_19 = Request.Form["question_19"];
-        //not a questions for determining readiness
-
-        question_20 = Request.Form["question_20"];
-        //not a questions for determining readiness
-
-        question_21 = Request.Form["question_21"];
-
-        question_22 = Request.Form["question_22"];
-
-          //performs matching
-          if(question_3.Equals("Yes"))
-          {
-            readiness = readiness + 2;
-          }
-
-          if(question_4.Equals("No"))
-          {
-            readiness += 2;
-          }
-
-          if(question_5.Equals("No"))
-          {
-            readiness += 2;
-          }
-          if(question_5.Equals("Yes"))
-          {
-            readiness -= 1;
-          }
-
-          if(question_6.Equals("No"))
-          {
-            readiness += 2;
-          }
-          if(question_6.Equals("Yes"))
-          {
-            readiness -= 4;
-          }
-
-          if(question_7.Equals("Yes, full time"))
-          {
-            readiness += 3;
-          }
-          if(question_7.Equals("Yes, part time"))
-          {
-            readiness += 2;
-          }
-          if(question_7.Equals("Yes, seasonal or temporary"))
-          {
-            readiness += 2;
-          }
-          if(question_7.Equals("Maybe"))
-          {
-            readiness += 1;
-          }
-
-          if(question_9.Equals("Yes"))
-          {
-            readiness += 2;
-          }
-          if(question_9.Equals("No"))
-          {
-            readiness -= 1;
-          }
-
-          if(question_10.Equals("$1250/year") || question_10.Equals("$1000/year") || question_10.Equals("$750/year"))
-          {
-            readiness += 2;
-          }
-          if(question_10.Equals("$250/year") || question_10.Equals("$500/year"))
-          {
-            readiness += 1;
-          }
-
-          if(question_11.Equals("$1250/year") || question_11.Equals("$1000/year") || question_11.Equals("$1750+/year") || question_11.Equals("$1500/year"))
-          {
-            readiness += 2;
-          }
-          if(question_11.Equals("$250/year") || question_11.Equals("$500/year") || question_11.Equals("$750/year"))
-          {
-            readiness -= 1;
-          }
-
-          if(question_14.Equals("Apartment (2+ bedrooms)") || question_14.Equals("Apartment (studio/ single room)") || question_14.Equals("Condo") || question_14.Equals("Single family home"))
-          {
-            readiness += 2;
-          }
-          if(question_14.Equals("Dorm/Resident hall"))
-          {
-            readiness -= 15;
-          }
-
-          if(question_21.Equals("Yes"))
-          {
-            readiness -= 2;
-          }
-          if(question_21.Equals("No"))
-          {
-            readiness += 2;
-          }
-
-          if(question_22.Equals("Yes"))
-          {
-            readiness -= 2;
-          }
-          if(question_22.Equals("No"))
-          {
-            readiness += 2;
-          }
-
-        //creates the database connection and performs the query
+        //Performs Matching
         SqlDataReader reader2;
-        var insertQueryString = "INSERT INTO Responses (User_ID,Readiness) VALUES (@1,@2)";
+        var insertQueryString = "INSERT INTO CatResponses (User_ID,Cat_orange,Cat_purple,Cat_green) VALUES (@1,@2,@3,@4)";
         SqlCommand comm = new SqlCommand();
         comm.Connection = database;
         comm.CommandType = CommandType.Text;
         comm.CommandText = insertQueryString;
         comm.Parameters.AddWithValue("@1", DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().UserID.ToString());
-        comm.Parameters.AddWithValue("@2", readiness);
+        comm.Parameters.AddWithValue("@2", orange);
+        comm.Parameters.AddWithValue("@3", purple);
+        comm.Parameters.AddWithValue("@4", green);
 
         reader2 = comm.ExecuteReader();
 
@@ -304,10 +181,6 @@
       catch
       {
 
-      }
-
-      finally
-      {
 
       }
     }
