@@ -11,44 +11,69 @@
 <body>
 @{
 
-var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
-var selectQueryString = "SELECT * FROM Questions ORDER BY Question_ID";
+  var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
+  var currentUser = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().UserID.ToString();
+  var readiness = 0;
 
-SqlCommand command = new SqlCommand(selectQueryString, database);
-database.Open();
-var databaseName = database.Database;
-SqlDataReader reader = command.ExecuteReader();
+  SqlConnection database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
 
-  <h1>Your Readiness Color Below</h1>
+  SqlCommand cmd = new SqlCommand();
 
-  try
-  {
-    while (reader.Read())
+  SqlDataReader reader;
+
+  cmd.Parameters.Add(new SqlParameter("@1", string.IsNullOrEmpty(currentUser) ? (object)DBNull.Value : currentUser));
+
+  cmd.CommandText = "SELECT TOP 1 * FROM Responses WHERE User_ID = @1";
+
+  cmd.CommandType = CommandType.Text;
+
+  cmd.Connection = database;
+
+  database.Open();
+
+  reader = cmd.ExecuteReader();
+
+
+  while(reader.Read()){
+    try{
+      readiness = reader.GetInt32(2);
+
+      if(DBNull.Value == reader[1])
+      {
+        <h3>Want to see if you are PetReady and get your Readiness color? Complete the questionnaire by pressing the icon below.</h3>
+        <p class="text-center"><a href="/Account/Questionnaire"><img alt="" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+        <h3>@readiness</h3>
+      }
+      if(readiness >= 15 & DBNull.Value != reader[1])
+      {
+        <h1>Congradulations @displayName you are PetReady.</h1>
+        <h2>To meet your match click on the buttons below.</h2>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymcat" >Meet Your Match: Cats</a>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymdog" >Meet Your Match: Dogs</a>
+      }
+      if(readiness < 15 & DBNull.Value != reader[1])
+      {
+        <h1>Congradulations @displayName you have been found to be a perfect match for fostering/volunteering.</h1>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Get-Involved/Fostering-volunteering" >Click here to apply</a>
+        <h3>Though you have been found to be a perfect match for fostering/volunteering, you can still meet your match below</h3>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymcat" >Meet Your Match: Cats</a>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymdog" >Meet Your Match: Dogs</a>
+      }
+    }
+    catch
     {
-      if(reader[0] == DBNull.Value)
-      {
-        <p>words</p>
-      }
-      else
-      {
-        <h3>Want to See if you are PetReady and your Readiness color?
-        Complete the questionnaire by pressing the icon below.</h3>
-        <p style="text-align: center;"><a href="/Account/Questionnaire"><img alt="" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
 
-      }
     }
 
   }
-  catch (InvalidCastException e)
-{
-  <h3>Error</h3>
-}
 
-  finally
-  {
-    reader.Close();
+  database.Close();
+
   }
-
-}
+  <br></br>
+  <hr></hr>
+  <br></br>
+  <h3>Want to see if you are PetReady and Meet Your Match? Complete the questionnaire by pressing the icon below.</h3>
+  <p class="text-center"><a href="/Account/Questionnaire"> <img alt="" class="text-center" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
 
 </body>
