@@ -157,6 +157,209 @@
         question_17 = Request.Form["question_17"];
 
         //Performs Matching
+
+        if(question_1.Equals("A library"))
+        {
+          purple += 1;
+        }
+
+        if(question_1.Equals("Middle of the road"))
+        {
+          orange += 1;
+        }
+
+        if(question_1.Equals("A carnival"))
+        {
+          green += 1;
+        }
+
+        if(question_2.Equals("No"))
+        {
+          purple += 1;
+        }
+
+        if(question_2.Equals("Somewhat"))
+        {
+          orange += 1;
+        }
+
+        if(question_2.Equals("Yes"))
+        {
+          green += 1;
+        }
+        if(question_3.Equals("Little of the time"))
+        {
+          purple += 1;
+        }
+
+        if(question_3.Equals("Some of the time"))
+        {
+          orange += 1;
+        }
+
+        if(question_3.Equals("All of the time"))
+        {
+          green += 1;
+        }
+
+        if(question_4.Equals("Love them but rather not to live with them"))
+        {
+          purple += 1;
+        }
+
+        if(question_4.Equals("Depends on the situation"))
+        {
+          orange += 1;
+        }
+
+        if(question_4.Equals("Fine by me"))
+        {
+          green += 1;
+        }
+
+        if(question_5.Equals("Not important"))
+        {
+          purple += 1;
+        }
+
+        if(question_5.Equals("Somewhat"))
+        {
+          orange += 1;
+        }
+
+        if(question_5.Equals("Yes"))
+        {
+          green += 1;
+        }
+
+        if(question_6.Equals("It's not important whether my cat loves being with children"))
+        {
+          purple += 1;
+        }
+
+        if(question_6.Equals("Some of the time"))
+        {
+          orange += 1;
+        }
+
+        if(question_6.Equals("Most of the time"))
+        {
+          green += 1;
+        }
+
+        if(question_7.Equals("More than 9 hours per day"))
+        {
+          purple += 1;
+        }
+
+        if(question_7.Equals("4 to 8 hours per day"))
+        {
+          orange += 1;
+        }
+
+        if(question_7.Equals("Less than 4 hours per day"))
+        {
+          green += 1;
+        }
+
+        if(question_8.Equals("Little of the time"))
+        {
+          purple += 1;
+        }
+
+        if(question_8.Equals("Some of the time"))
+        {
+          orange += 1;
+        }
+
+        if(question_8.Equals("All of the time"))
+        {
+          green += 1;
+        }
+
+        if(question_9.Equals("Little of the time"))
+        {
+          purple += 1;
+        }
+
+        if(question_9.Equals("Some of the time"))
+        {
+          orange += 1;
+        }
+
+        if(question_9.Equals("Most of the time"))
+        {
+          green += 1;
+        }
+
+        if(question_11.Equals("Inside"))
+        {
+          purple += 1;
+        }
+
+        if(question_11.Equals("Inside and Outside"))
+        {
+          orange += 1;
+        }
+
+        if(question_11.Equals("Outside"))
+        {
+          green += 1;
+        }
+
+        if(question_12.Equals("No"))
+        {
+          purple += 1;
+        }
+
+        if(question_12.Equals("Yes"))
+        {
+          green += 1;
+        }
+
+        if(question_13.Equals("No"))
+        {
+          purple += 1;
+        }
+
+        if(question_13.Equals("Yes"))
+        {
+          green += 1;
+        }
+
+        if(question_14.Equals("Little of the time"))
+        {
+          purple += 1;
+        }
+
+        if(question_14.Equals("Some of the time"))
+        {
+          orange += 1;
+        }
+
+        if(question_14.Equals("Often"))
+        {
+          green += 1;
+        }
+
+        if(question_15.Equals("Not very active at all"))
+        {
+          purple += 1;
+        }
+
+        if(question_15.Equals("Somewhat"))
+        {
+          orange += 1;
+        }
+
+        if(question_15.Equals("Yes, very"))
+        {
+          green += 1;
+        }
+
+
+
+        //Database Connection
         SqlDataReader reader2;
         var insertQueryString = "INSERT INTO CatResponses (User_ID,Cat_orange,Cat_purple,Cat_green) VALUES (@1,@2,@3,@4)";
         SqlCommand comm = new SqlCommand();

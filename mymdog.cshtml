@@ -8,6 +8,15 @@
 
 @*Copyright (c) 2017 by Anubis *@
 
+<style>
+input[type=text]
+{
+ height: auto!important;
+ width: auto!important;
+}
+</style>
+
+
 <body>
 <form method="POST" action="" id="questions">
 
@@ -29,6 +38,7 @@
   string question_15 = "";
   string question_16 = "";
   string question_17 = "";
+  string question_18 = "";
   int green = 0;
   int purple = 0;
   int orange = 0;
@@ -156,7 +166,129 @@
 
         question_17 = Request.Form["question_17"];
 
+        question_18 = Request.Form["question_18"];
+
         //Performs Matching
+
+        if(question_1.Equals("No"))
+        {
+          purple += 1;
+        }
+        if(question_2.Equals("10 years +"))
+        {
+          purple += 1;
+        }
+        if(question_4.Equals("Children under 8 years old"))
+        {
+          purple += 1;
+        }
+        if(question_4.Equals("Elderly People"))
+        {
+          purple += 1;
+          orange += 1;
+        }
+        if(question_7.Equals("8-10 hours"))
+        {
+          purple += 1;
+        }
+        if(question_7.Equals("4-8 hours"))
+        {
+          purple += 1;
+          orange += 1;
+        }
+        if(question_7.Equals("2 hours or less"))
+        {
+          green +=1;
+        }
+        if(question_8.Equals("All of the time"))
+        {
+          purple += 1;
+        }
+        if(question_8.Equals("Some of the time"))
+        {
+          orange += 1;
+        }
+        if(question_8.Equals("Little of the time"))
+        {
+          green += 1;
+        }
+        if(question_9.Equals("In the yard"))
+        {
+          purple += 1;
+          orange += 1;
+        }
+        if(question_11.Equals("Yes"))
+        {
+          green += 1;
+        }
+        if(question_12.Equals("Not at all"))
+        {
+          purple += 1;
+        }
+        if(question_12.Equals("Somewhat"))
+        {
+          orange += 1;
+        }
+        if(question_12.Equals("Very"))
+        {
+          green += 1;
+        }
+        if(question_13.Equals("Not at all"))
+        {
+          purple += 1;
+        }
+        if(question_13.Equals("Somewhat"))
+        {
+          orange += 1;
+        }
+        if(question_13.Equals("Very"))
+        {
+          green += 1;
+        }
+        if(question_14.Equals("Very"))
+        {
+          purple += 1;
+        }
+        if(question_14.Equals("Somewhat"))
+        {
+          orange += 1;
+        }
+        if(question_14.Equals("Not at all"))
+        {
+          green += 1;
+        }
+        if(question_15.Equals("No training"))
+        {
+          purple += 1;
+        }
+        if(question_15.Equals("Some training"))
+        {
+          orange += 1;
+        }
+        if(question_15.Equals("A lot of training"))
+        {
+          green += 1;
+        }
+        if(question_16.Equals("No"))
+        {
+          purple += 1;
+          orange += 1;
+        }
+        if(question_16.Equals("Yes"))
+        {
+          green += 1;
+        }
+        if(question_16.Equals("No"))
+        {
+          purple += 1;
+          orange += 1;
+        }
+        if(question_16.Equals("Yes"))
+        {
+          green += 1;
+        }
+
+        //Database Connection
         SqlDataReader reader2;
         var insertQueryString = "INSERT INTO DogResponses (User_ID,Dog_orange,Dog_purple,Dog_green) VALUES (@1,@2,@3,@4)";
         SqlCommand comm = new SqlCommand();
