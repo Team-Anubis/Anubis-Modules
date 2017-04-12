@@ -1,0 +1,83 @@
+@using DotNetNuke.Common;
+@using System;
+@using DotNetNuke.Entities.Modules;
+@using System.Data.SqlClient;
+@using System.Diagnostics;
+@using System.Data;
+@using System.Data.Common;
+
+@*Copyright (c) 2017 by Anubis *@
+
+<body>
+@{
+
+  var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
+  var currentUser = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().UserID.ToString();
+  var readiness = 0;
+
+  SqlConnection database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+
+  SqlCommand cmd = new SqlCommand();
+
+  SqlDataReader reader;
+
+  cmd.Parameters.AddWithValue("@1", currentUser);
+
+  cmd.CommandText = "SELECT TOP 1 * FROM Responses WHERE User_ID = @1";
+
+  cmd.CommandType = CommandType.Text;
+
+  cmd.Connection = database;
+
+  database.Open();
+
+  reader = cmd.ExecuteReader();
+
+
+  try
+  {
+    while(reader.Read())
+    {
+      readiness = reader.GetInt32(2);
+
+      if(DBNull.Value == reader[1])
+      {
+        <h3>Want to see if you are PetReady and get your Readiness color? Complete the questionnaire by pressing the icon below.</h3>
+        <p class="text-center"><a href="/Account/Questionnaire"><img alt="" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+        <h3>@readiness</h3>
+      }
+      if(readiness >= 15 & DBNull.Value != reader[1])
+      {
+        <h1>Congratulations @displayName you are PetReady.</h1>
+        <h2>To meet your match click on the buttons below.</h2>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymcat" >Meet Your Match: Cats</a>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymdog" >Meet Your Match: Dogs</a>
+      }
+      if(readiness < 15 & DBNull.Value != reader[1])
+      {
+        <h1>Congratulations @displayName you have been found to be a perfect match for fostering/volunteering.</h1>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Get-Involved/Fostering-volunteering" >Click here to apply</a>
+        <h3>Though you have been found to be a perfect match for fostering/volunteering, you can still meet your match below</h3>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymcat" >Meet Your Match: Cats</a>
+        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymdog" >Meet Your Match: Dogs</a>
+      }
+    }
+  }
+  catch
+  {
+    <h3>Want to see if you are PetReady and Meet Your Match? Complete the questionnaire by pressing the icon below.</h3>
+    <p class="text-center"><a href="/Account/Questionnaire"> <img alt="" class="text-center" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+  }
+  finally
+  {
+    reader.Close();
+  }
+
+}
+
+  <br></br>
+  <hr></hr>
+  <br></br>
+
+
+</body>
