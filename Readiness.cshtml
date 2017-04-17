@@ -36,37 +36,47 @@
 
   try
   {
-    while(reader.Read())
+    if(reader.HasRows)
     {
-      readiness = reader.GetInt32(2);
+      while(reader.Read())
+      {
+        readiness = reader.GetInt32(2);
 
-      if(DBNull.Value == reader[1])
-      {
-        <h3>Want to see if you are PetReady and get your Readiness color? Complete the questionnaire by pressing the icon below.</h3>
-        <p class="text-center"><a href="/Account/Questionnaire"><img alt="" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
-        <h3>@readiness</h3>
-      }
-      if(readiness >= 15 & DBNull.Value != reader[1])
-      {
-        <h1>Congratulations @displayName you are PetReady.</h1>
-        <h2>To meet your match click on the buttons below.</h2>
-        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymcat" >Meet Your Match: Cats</a>
-        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymdog" >Meet Your Match: Dogs</a>
-      }
-      if(readiness < 15 & DBNull.Value != reader[1])
-      {
-        <h1>Congratulations @displayName you have been found to be a perfect match for fostering/volunteering.</h1>
-        <a class="btn btn-success btn-lg text-center" type="button" href="/Get-Involved/Fostering-volunteering" >Click here to apply</a>
-        <h3>Though you have been found to be a perfect match for fostering/volunteering, you can still meet your match below</h3>
-        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymcat" >Meet Your Match: Cats</a>
-        <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/mymdog" >Meet Your Match: Dogs</a>
+        if(DBNull.Value == reader[1])
+        {
+          <h3>Want to see if you are PetReady and get your Readiness color? Complete the questionnaire by pressing the icon below.</h3>
+          <p class="text-center"><a href="/Account/Questionnaire"><img alt="" src="/Portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+          <h3>@readiness</h3>
+        }
+        if(readiness >= 15 & DBNull.Value != reader[1])
+        {
+          <h1>Congratulations @displayName you are PetReady.</h1>
+          <h2>To meet your match click on the buttons below.</h2>
+          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Cat-Readiness" >Meet Your Match: Cats</a>
+          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Dog-Readiness" >Meet Your Match: Dogs</a>
+        }
+        if(readiness < 15 & DBNull.Value != reader[1])
+        {
+          <h1>Congratulations @displayName you have been found to be a perfect match for fostering/volunteering.</h1>
+          <a class="btn btn-success btn-lg text-center" type="button" href="/Get-Involved/Fostering-volunteering" >Click here to apply</a>
+          <h3>Though you have been found to be a perfect match for fostering/volunteering, you can still meet your match below</h3>
+          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Cat-Readiness" >Meet Your Match: Cats</a>
+          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Dog-Readiness" >Meet Your Match: Dogs</a>
+          <br></br>
+        }
       }
     }
+    else
+    {
+      <h3>Want to see if you are PetReady and Meet Your Match? Complete the questionnaire by pressing the icon below.</h3>
+      <p class="text-center"><a href="/Account/Questionnaire"> <img alt="" class="text-center" src="/Portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+    }
+
+
   }
   catch
   {
-    <h3>Want to see if you are PetReady and Meet Your Match? Complete the questionnaire by pressing the icon below.</h3>
-    <p class="text-center"><a href="/Account/Questionnaire"> <img alt="" class="text-center" src="/portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
+
   }
   finally
   {
@@ -75,9 +85,571 @@
 
 }
 
-  <br></br>
-  <hr></hr>
-  <br></br>
+@{
+
+  var Cat_orange = 0;
+  var Cat_purple = 0;
+  var Cat_green = 0;
+  var CatMax = 0;
+
+  SqlCommand cmdCat = new SqlCommand();
+
+  SqlDataReader Catreader;
+
+  cmdCat.Parameters.AddWithValue("@1", currentUser);
+
+  cmdCat.CommandText = "SELECT TOP 1 * FROM CatResponses WHERE User_ID = @1";
+
+  cmdCat.CommandType = CommandType.Text;
+
+  cmdCat.Connection = database;
+
+  Catreader = cmdCat.ExecuteReader();
+
+
+  try
+  {
+    while(Catreader.Read())
+    {
+      Cat_orange = Catreader.GetInt32(2);
+      Cat_purple = Catreader.GetInt32(3);
+      Cat_green = Catreader.GetInt32(4);
+      CatMax = Math.Max(Cat_orange, Math.Max(Cat_purple, Cat_green));
+
+      if(CatMax == Cat_orange)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Orange Cats.</h3>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-The-Executive.png" />
+          <h4>The Executive</h4>
+          <p>I have to say, I'm a busy cat. First, I've got to check out what's happening out the window. Next, I'll see if any closets or cupboards need looking into. And then there are my naps ? can't be late for those. I can fit a little socializing into my schedule. Shall we plan on breakfast and dinner? I hope you like kibbles.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Sidekick.png" />
+          <h4>Sidekick</h4>
+          <p>Like all sidekicks, I'm just plain good company. I like attention, and I also like my solitude. I don't go looking for trouble but I'm no scaredy-cat, either. If you are looking for a steady companion to travel with you on the road of life, look no further.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="http://petready.org.nau.edu/Portals/0/Images/mym%20images/F-Personal-Assistant.png?ver=2017-03-21-210313-090" />
+          <h4>Personal Assistant</h4>
+          <p>You're working on the computer? Let me press the keys. Reading the paper? I'll hold the pages down for you. Watching TV? I'll just plop in your lap so you can pet me. I love an orderly household, don't you? I'll help you with all your chores, and I'll help you relax when we're done. You'll wonder how you ever managed without me.</p>
+        </div>
+      }
+
+      if(CatMax == Cat_green)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Green Cats.</h3>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-MVP.png">
+          <h4>MVP</h4>
+          <p>I'm a savvy cat who knows the score. I'm pretty unflappable, too. I don't mind entertaining myself, but a human companion at the other end of the couch and a nice scratch behind the ears always make my day. If you're looking for a resourceful addition to your team, think about signing this Most Valuable Pussycat.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Party-Animal.png">
+          <h4>Party Animal</h4>
+          <p>I'm a cat on a mission: PARTY! I love to play and explore and test my limits. I'd love to play with you, but I can make a toy out of anything: pencils, post-it notes, potatoes. If you're looking for some laughs and someone to liven up the party, think about inviting me.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Leader-of-the-Band.png">
+          <h4>Leader of the Band</h4>
+          <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
+        </div>
+      }
+
+      if(CatMax == Cat_purple)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Purple Cats.</h3>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Private-Investigator.png">
+          <h4>Private Investigator</h4>
+          <p>I'm working undercover to keep an eye on you and your household. You may not even know you're under surveillance. I can vanish into thin air if anyone or anything interferes with my investigation. If you need a cat who knows how to stay out of trouble and will always keep your secrets, I just might take your case.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Secret-Admirer.png">
+          <h4>Secret Admirer</h4>
+          <p>When it comes to relationships, I'm very level-headed. I don't leap in paws first, if you know what I mean. But give me a little time, and then I'll shower you with purrs, head-butts, and plenty of lap time. In the meantime, you may not see a lot of me but I'll be thinking a lot of you!</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Love-Bug.png">
+          <h4>Love Bug</h4>
+          <p>Do you seek affection? I do! If you also like petting, purrs, and paws kneading your lap, I think we might have a LOT in common. I'm looking for "someone who enjoys quiet times and togetherness." Could that someone be you?</p>
+        </div>
+      }
+
+      if(CatMax == Cat_purple & CatMax == Cat_green)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Purple & Green Cats.</h3>
+        <div class="row">
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Private-Investigator.png">
+          <h4>Private Investigator</h4>
+          <p>I'm working undercover to keep an eye on you and your household. You may not even know you're under surveillance. I can vanish into thin air if anyone or anything interferes with my investigation. If you need a cat who knows how to stay out of trouble and will always keep your secrets, I just might take your case.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Secret-Admirer.png">
+          <h4>Secret Admirer</h4>
+          <p>When it comes to relationships, I'm very level-headed. I don't leap in paws first, if you know what I mean. But give me a little time, and then I'll shower you with purrs, head-butts, and plenty of lap time. In the meantime, you may not see a lot of me but I'll be thinking a lot of you!</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Love-Bug.png">
+          <h4>Love Bug</h4>
+          <p>Do you seek affection? I do! If you also like petting, purrs, and paws kneading your lap, I think we might have a LOT in common. I'm looking for "someone who enjoys quiet times and togetherness." Could that someone be you?</p>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-MVP.png">
+            <h4>MVP</h4>
+            <p>I'm a savvy cat who knows the score. I'm pretty unflappable, too. I don't mind entertaining myself, but a human companion at the other end of the couch and a nice scratch behind the ears always make my day. If you're looking for a resourceful addition to your team, think about signing this Most Valuable Pussycat.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Party-Animal.png">
+            <h4>Party Animal</h4>
+            <p>I'm a cat on a mission: PARTY! I love to play and explore and test my limits. I'd love to play with you, but I can make a toy out of anything: pencils, post-it notes, potatoes. If you're looking for some laughs and someone to liven up the party, think about inviting me.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Leader-of-the-Band.png">
+            <h4>Leader of the Band</h4>
+            <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
+          </div>
+        </div>
+      }
+
+      if(CatMax == Cat_purple & CatMax == Cat_orange)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Purple & Orange Cats.</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Private-Investigator.png">
+            <h4>Private Investigator</h4>
+            <p>I'm working undercover to keep an eye on you and your household. You may not even know you're under surveillance. I can vanish into thin air if anyone or anything interferes with my investigation. If you need a cat who knows how to stay out of trouble and will always keep your secrets, I just might take your case.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Secret-Admirer.png">
+            <h4>Secret Admirer</h4>
+            <p>When it comes to relationships, I'm very level-headed. I don't leap in paws first, if you know what I mean. But give me a little time, and then I'll shower you with purrs, head-butts, and plenty of lap time. In the meantime, you may not see a lot of me but I'll be thinking a lot of you!</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Love-Bug.png">
+            <h4>Love Bug</h4>
+            <p>Do you seek affection? I do! If you also like petting, purrs, and paws kneading your lap, I think we might have a LOT in common. I'm looking for "someone who enjoys quiet times and togetherness." Could that someone be you?</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-The-Executive.png" />
+            <h4>The Executive</h4>
+            <p>I have to say, I'm a busy cat. First, I've got to check out what's happening out the window. Next, I'll see if any closets or cupboards need looking into. And then there are my naps ? can't be late for those. I can fit a little socializing into my schedule. Shall we plan on breakfast and dinner? I hope you like kibbles.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Sidekick.png" />
+            <h4>Sidekick</h4>
+            <p>Like all sidekicks, I'm just plain good company. I like attention, and I also like my solitude. I don't go looking for trouble but I'm no scaredy-cat, either. If you are looking for a steady companion to travel with you on the road of life, look no further.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="http://petready.org.nau.edu/Portals/0/Images/mym%20images/F-Personal-Assistant.png?ver=2017-03-21-210313-090" />
+            <h4>Personal Assistant</h4>
+            <p>You're working on the computer? Let me press the keys. Reading the paper? I'll hold the pages down for you. Watching TV? I'll just plop in your lap so you can pet me. I love an orderly household, don't you? I'll help you with all your chores, and I'll help you relax when we're done. You'll wonder how you ever managed without me.</p>
+          </div>
+        </div>
+      }
+      if(CatMax == Cat_orange & CatMax == Cat_green)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Orange & Green Cats.</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-The-Executive.png" />
+            <h4>The Executive</h4>
+            <p>I have to say, I'm a busy cat. First, I've got to check out what's happening out the window. Next, I'll see if any closets or cupboards need looking into. And then there are my naps ? can't be late for those. I can fit a little socializing into my schedule. Shall we plan on breakfast and dinner? I hope you like kibbles.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Sidekick.png" />
+            <h4>Sidekick</h4>
+            <p>Like all sidekicks, I'm just plain good company. I like attention, and I also like my solitude. I don't go looking for trouble but I'm no scaredy-cat, either. If you are looking for a steady companion to travel with you on the road of life, look no further.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="http://petready.org.nau.edu/Portals/0/Images/mym%20images/F-Personal-Assistant.png?ver=2017-03-21-210313-090" />
+            <h4>Personal Assistant</h4>
+            <p>You're working on the computer? Let me press the keys. Reading the paper? I'll hold the pages down for you. Watching TV? I'll just plop in your lap so you can pet me. I love an orderly household, don't you? I'll help you with all your chores, and I'll help you relax when we're done. You'll wonder how you ever managed without me.</p>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-MVP.png">
+          <h4>MVP</h4>
+          <p>I'm a savvy cat who knows the score. I'm pretty unflappable, too. I don't mind entertaining myself, but a human companion at the other end of the couch and a nice scratch behind the ears always make my day. If you're looking for a resourceful addition to your team, think about signing this Most Valuable Pussycat.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Party-Animal.png">
+          <h4>Party Animal</h4>
+          <p>I'm a cat on a mission: PARTY! I love to play and explore and test my limits. I'd love to play with you, but I can make a toy out of anything: pencils, post-it notes, potatoes. If you're looking for some laughs and someone to liven up the party, think about inviting me.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Leader-of-the-Band.png">
+          <h4>Leader of the Band</h4>
+          <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
+        </div>
+      }
+      if(CatMax == Cat_purple & CatMax == Cat_green & CatMax == Cat_orange)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Cats!</h2>
+        <h3>Your match is to Purple & Green & Orange Cats.</h3>
+        <div class="row">
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Private-Investigator.png">
+          <h4>Private Investigator</h4>
+          <p>I'm working undercover to keep an eye on you and your household. You may not even know you're under surveillance. I can vanish into thin air if anyone or anything interferes with my investigation. If you need a cat who knows how to stay out of trouble and will always keep your secrets, I just might take your case.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Secret-Admirer.png">
+          <h4>Secret Admirer</h4>
+          <p>When it comes to relationships, I'm very level-headed. I don't leap in paws first, if you know what I mean. But give me a little time, and then I'll shower you with purrs, head-butts, and plenty of lap time. In the meantime, you may not see a lot of me but I'll be thinking a lot of you!</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Love-Bug.png">
+          <h4>Love Bug</h4>
+          <p>Do you seek affection? I do! If you also like petting, purrs, and paws kneading your lap, I think we might have a LOT in common. I'm looking for "someone who enjoys quiet times and togetherness." Could that someone be you?</p>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-The-Executive.png" />
+            <h4>The Executive</h4>
+            <p>I have to say, I'm a busy cat. First, I've got to check out what's happening out the window. Next, I'll see if any closets or cupboards need looking into. And then there are my naps ? can't be late for those. I can fit a little socializing into my schedule. Shall we plan on breakfast and dinner? I hope you like kibbles.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/F-Sidekick.png" />
+            <h4>Sidekick</h4>
+            <p>Like all sidekicks, I'm just plain good company. I like attention, and I also like my solitude. I don't go looking for trouble but I'm no scaredy-cat, either. If you are looking for a steady companion to travel with you on the road of life, look no further.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="http://petready.org.nau.edu/Portals/0/Images/mym%20images/F-Personal-Assistant.png?ver=2017-03-21-210313-090" />
+            <h4>Personal Assistant</h4>
+            <p>You're working on the computer? Let me press the keys. Reading the paper? I'll hold the pages down for you. Watching TV? I'll just plop in your lap so you can pet me. I love an orderly household, don't you? I'll help you with all your chores, and I'll help you relax when we're done. You'll wonder how you ever managed without me.</p>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-MVP.png">
+          <h4>MVP</h4>
+          <p>I'm a savvy cat who knows the score. I'm pretty unflappable, too. I don't mind entertaining myself, but a human companion at the other end of the couch and a nice scratch behind the ears always make my day. If you're looking for a resourceful addition to your team, think about signing this Most Valuable Pussycat.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Party-Animal.png">
+          <h4>Party Animal</h4>
+          <p>I'm a cat on a mission: PARTY! I love to play and explore and test my limits. I'd love to play with you, but I can make a toy out of anything: pencils, post-it notes, potatoes. If you're looking for some laughs and someone to liven up the party, think about inviting me.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/F-Leader-of-the-Band.png">
+          <h4>Leader of the Band</h4>
+          <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
+        </div>
+      </div>
+      }
+
+    }
+  }
+  catch
+  {
+
+  }
+  finally
+  {
+    Catreader.Close();
+  }
+
+}
+
+@{
+
+  var Dog_orange = 0;
+  var Dog_purple = 0;
+  var Dog_green = 0;
+  var DogMax = 0;
+
+  SqlCommand cmdDog = new SqlCommand();
+
+  SqlDataReader Dogreader;
+
+  cmdDog.Parameters.AddWithValue("@1", currentUser);
+
+  cmdDog.CommandText = "SELECT TOP 1 * FROM DogResponses WHERE User_ID = @1";
+
+  cmdDog.CommandType = CommandType.Text;
+
+  cmdDog.Connection = database;
+
+  Dogreader = cmdDog.ExecuteReader();
+
+
+  try
+  {
+    while(Dogreader.Read())
+    {
+      Dog_orange = Dogreader.GetInt32(2);
+      Dog_purple = Dogreader.GetInt32(3);
+      Dog_green = Dogreader.GetInt32(4);
+      DogMax = Math.Max(Dog_orange, Math.Max(Dog_purple, Dog_green));
+
+      if(DogMax == Dog_orange)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Orange Dogs.</h3>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Wallflower.png">
+          <h4>Wallflower</h4>
+          <p>Shy yet charming canine searching for patient owner with relaxed lifestyle. Looking for gentle guidance to help me come out of my shell. Treat me sweet and kind and I'll blossom. (Internally motivated)</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Busy-Bee.png">
+          <h4>Busy Bee</h4>
+          <p>I'm a naturally playful, curious, and trusting canine. Take me for a big walk every day; give me something to do. After my job's done, I'll curl up in front of the fire with you in the evenings. (Externally motivated)</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Goofball.png">
+          <h4>Goofball</h4>
+          <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
+        </div>
+      }
+
+      if(DogMax == Dog_purple)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Purple Dogs.</h3>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Couch-Potato.png">
+          <h4>Couch Potato</h4>
+          <p>Like the easy life? Then I'm the perfect match for you. I'm a relaxed, laid-back kind of dog who enjoys long naps, watching movies, curling up on laps, and walking very short distances from the couch to the food bowl and back. (Internally motivated)</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Constant-Companion.png">
+          <h4>Constant Companion</h4>
+          <p>Looking for an emotionally secure, mutually satisfying, low maintenance relationship? I am all you need. Let me sit at your feet, walk by your side, and I'll be your devoted companion forever. (Socially motivated)</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Teachers-Pet.png">
+          <h4>Teacher's Pet</h4>
+          <p>I've got the whole package — smart, fuzzy, four legs, love to learn and live to please. Go ahead, teach me anything. Sit, stay, balance your checkbook, I can do it all. Keep me entertained and I'll be yours forever. (Externally motivated)</p>
+        </div>
+      }
+
+      if(DogMax == Dog_green)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Green Dogs.</h3>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Life-of-the-Party.png">
+          <h4>Life of the Party</h4>
+          <p>I think everything is fun, interesting and meant for play, especially you. Anything you do, I'll want to do too. With my own brand of surprises, life with me will keep you constantly on your toes, and the fun is guaranteed. (Socially motivated)</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Go-Getter.png">
+          <h4>Go-Getter</h4>
+          <p>Want to get more exercise? Action is my middle name. My "Let's GO!" lifestyle will keep you motivated to get outside and move. I've got tons of energy; and just like the sun, I'm burning and working 24 hours a day, seven days a week. I'll run for miles, chase a ball for hours, and still want to play at the end of the day. (Externally motivated)</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="/Portals/0/Images/C-Free-Spirit.png">
+          <h4>Free Spirit</h4>
+          <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
+        </div>
+      }
+
+      if(DogMax == Dog_purple & DogMax == Dog_green)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Purple & Green Dogs.</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Couch-Potato.png">
+            <h4>Couch Potato</h4>
+            <p>Like the easy life? Then I'm the perfect match for you. I'm a relaxed, laid-back kind of dog who enjoys long naps, watching movies, curling up on laps, and walking very short distances from the couch to the food bowl and back. (Internally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Constant-Companion.png">
+            <h4>Constant Companion</h4>
+            <p>Looking for an emotionally secure, mutually satisfying, low maintenance relationship? I am all you need. Let me sit at your feet, walk by your side, and I'll be your devoted companion forever. (Socially motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Teachers-Pet.png">
+            <h4>Teacher's Pet</h4>
+            <p>I've got the whole package — smart, fuzzy, four legs, love to learn and live to please. Go ahead, teach me anything. Sit, stay, balance your checkbook, I can do it all. Keep me entertained and I'll be yours forever. (Externally motivated)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Life-of-the-Party.png">
+            <h4>Life of the Party</h4>
+            <p>I think everything is fun, interesting and meant for play, especially you. Anything you do, I'll want to do too. With my own brand of surprises, life with me will keep you constantly on your toes, and the fun is guaranteed. (Socially motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Go-Getter.png">
+            <h4>Go-Getter</h4>
+            <p>Want to get more exercise? Action is my middle name. My "Let's GO!" lifestyle will keep you motivated to get outside and move. I've got tons of energy; and just like the sun, I'm burning and working 24 hours a day, seven days a week. I'll run for miles, chase a ball for hours, and still want to play at the end of the day. (Externally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Free-Spirit.png">
+            <h4>Free Spirit</h4>
+            <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
+          </div>
+        </div>
+
+      }
+
+      if(DogMax == Dog_purple & DogMax == Dog_orange)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Purple & Orange Dogs.</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Couch-Potato.png">
+            <h4>Couch Potato</h4>
+            <p>Like the easy life? Then I'm the perfect match for you. I'm a relaxed, laid-back kind of dog who enjoys long naps, watching movies, curling up on laps, and walking very short distances from the couch to the food bowl and back. (Internally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Constant-Companion.png">
+            <h4>Constant Companion</h4>
+            <p>Looking for an emotionally secure, mutually satisfying, low maintenance relationship? I am all you need. Let me sit at your feet, walk by your side, and I'll be your devoted companion forever. (Socially motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Teachers-Pet.png">
+            <h4>Teacher's Pet</h4>
+            <p>I've got the whole package — smart, fuzzy, four legs, love to learn and live to please. Go ahead, teach me anything. Sit, stay, balance your checkbook, I can do it all. Keep me entertained and I'll be yours forever. (Externally motivated)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Wallflower.png">
+            <h4>Wallflower</h4>
+            <p>Shy yet charming canine searching for patient owner with relaxed lifestyle. Looking for gentle guidance to help me come out of my shell. Treat me sweet and kind and I'll blossom. (Internally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Busy-Bee.png">
+            <h4>Busy Bee</h4>
+            <p>I'm a naturally playful, curious, and trusting canine. Take me for a big walk every day; give me something to do. After my job's done, I'll curl up in front of the fire with you in the evenings. (Externally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Goofball.png">
+            <h4>Goofball</h4>
+            <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
+          </div>
+        </div>
+
+      }
+      if(DogMax == Dog_orange & DogMax == Dog_green)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Orange & Green Dogs.</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Wallflower.png">
+            <h4>Wallflower</h4>
+            <p>Shy yet charming canine searching for patient owner with relaxed lifestyle. Looking for gentle guidance to help me come out of my shell. Treat me sweet and kind and I'll blossom. (Internally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Busy-Bee.png">
+            <h4>Busy Bee</h4>
+            <p>I'm a naturally playful, curious, and trusting canine. Take me for a big walk every day; give me something to do. After my job's done, I'll curl up in front of the fire with you in the evenings. (Externally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Goofball.png">
+            <h4>Goofball</h4>
+            <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Life-of-the-Party.png">
+            <h4>Life of the Party</h4>
+            <p>I think everything is fun, interesting and meant for play, especially you. Anything you do, I'll want to do too. With my own brand of surprises, life with me will keep you constantly on your toes, and the fun is guaranteed. (Socially motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Go-Getter.png">
+            <h4>Go-Getter</h4>
+            <p>Want to get more exercise? Action is my middle name. My "Let's GO!" lifestyle will keep you motivated to get outside and move. I've got tons of energy; and just like the sun, I'm burning and working 24 hours a day, seven days a week. I'll run for miles, chase a ball for hours, and still want to play at the end of the day. (Externally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Free-Spirit.png">
+            <h4>Free Spirit</h4>
+            <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
+          </div>
+        </div>
+      }
+      if(DogMax == Dog_purple & DogMax == Dog_green & DogMax == Dog_orange)
+      {
+        <h2>Thank you for completing the Meet-Your-Match for Dogs!</h2>
+        <h3>Your match is to Purple & Green & Orange Dogs.</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Couch-Potato.png">
+            <h4>Couch Potato</h4>
+            <p>Like the easy life? Then I'm the perfect match for you. I'm a relaxed, laid-back kind of dog who enjoys long naps, watching movies, curling up on laps, and walking very short distances from the couch to the food bowl and back. (Internally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Constant-Companion.png">
+            <h4>Constant Companion</h4>
+            <p>Looking for an emotionally secure, mutually satisfying, low maintenance relationship? I am all you need. Let me sit at your feet, walk by your side, and I'll be your devoted companion forever. (Socially motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Teachers-Pet.png">
+            <h4>Teacher's Pet</h4>
+            <p>I've got the whole package — smart, fuzzy, four legs, love to learn and live to please. Go ahead, teach me anything. Sit, stay, balance your checkbook, I can do it all. Keep me entertained and I'll be yours forever. (Externally motivated)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Life-of-the-Party.png">
+            <h4>Life of the Party</h4>
+            <p>I think everything is fun, interesting and meant for play, especially you. Anything you do, I'll want to do too. With my own brand of surprises, life with me will keep you constantly on your toes, and the fun is guaranteed. (Socially motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Go-Getter.png">
+            <h4>Go-Getter</h4>
+            <p>Want to get more exercise? Action is my middle name. My "Let's GO!" lifestyle will keep you motivated to get outside and move. I've got tons of energy; and just like the sun, I'm burning and working 24 hours a day, seven days a week. I'll run for miles, chase a ball for hours, and still want to play at the end of the day. (Externally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Free-Spirit.png">
+            <h4>Free Spirit</h4>
+            <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Wallflower.png">
+            <h4>Wallflower</h4>
+            <p>Shy yet charming canine searching for patient owner with relaxed lifestyle. Looking for gentle guidance to help me come out of my shell. Treat me sweet and kind and I'll blossom. (Internally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Busy-Bee.png">
+            <h4>Busy Bee</h4>
+            <p>I'm a naturally playful, curious, and trusting canine. Take me for a big walk every day; give me something to do. After my job's done, I'll curl up in front of the fire with you in the evenings. (Externally motivated)</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="/Portals/0/Images/C-Goofball.png">
+            <h4>Goofball</h4>
+            <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
+          </div>
+        </div>
+      }
+
+    }
+  }
+  catch
+  {
+
+  }
+  finally
+  {
+    Dogreader.Close();
+  }
+
+}
 
 
 </body>

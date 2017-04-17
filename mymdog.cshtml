@@ -5,6 +5,11 @@
 @using System.Diagnostics;
 @using System.Data;
 @using System.Data.Common;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Net.Mail;
+@using System.Net;
 
 @*Copyright (c) 2017 by Anubis *@
 
@@ -15,7 +20,6 @@ input[type=text]
  width: auto!important;
 }
 </style>
-
 
 <body>
 <form method="POST" action="" id="questions">
@@ -42,6 +46,13 @@ input[type=text]
   int green = 0;
   int purple = 0;
   int orange = 0;
+  var ColorMax = 0;
+  string color = "";
+  string body = "";
+  string subject = "";
+  string contact = "";
+
+  var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
 
   var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
   var selectQueryString = "SELECT * FROM Dog_Questions ORDER BY Dog_Question_ID";
@@ -123,6 +134,8 @@ input[type=text]
     {
       // Always call Close when done reading.
       reader.Close();
+      <h3>Would you like to send your readiness information to the local Shelters?</h3>
+      <label style="font-size:medium"><input style="height:20px;width:20px" type="checkbox" name="contact" value="Yes" > Yes</label><br></br>
       <input type="submit" class="btn btn-success btn-lg" name="submit" value="Submit" />
       <input type="reset" class="btn btn-danger btn-lg" name="reset" value="Restart" />
 
@@ -288,9 +301,46 @@ input[type=text]
           green += 1;
         }
 
+        contact = Request.Form["contact"];
+
+        ColorMax = Math.Max(orange, Math.Max(purple, green));
+
+        if(ColorMax == orange)
+        {
+          color = "Orange";
+        }
+
+        if(ColorMax == green)
+        {
+          color = "Green";
+        }
+
+        if(ColorMax == purple)
+        {
+          color = "Purple";
+        }
+
+        if(ColorMax == purple & ColorMax == green)
+        {
+          color = "both Purple and Green";
+        }
+
+        if(ColorMax == purple & ColorMax == orange)
+        {
+          color = "both Purple and Orange";
+        }
+        if(ColorMax == orange & ColorMax == green)
+        {
+          color = "both Orange and Green";
+        }
+        if(ColorMax == purple & ColorMax == green & ColorMax == orange)
+        {
+          color = "all three Purple, Orange, and Green";
+        }
+
         //Database Connection
         SqlDataReader reader2;
-        var insertQueryString = "INSERT INTO DogResponses (User_ID,Dog_orange,Dog_purple,Dog_green) VALUES (@1,@2,@3,@4)";
+        var insertQueryString = "INSERT INTO DogResponses (User_ID,Dog_orange,Dog_purple,Dog_green,Dog_color) VALUES (@1,@2,@3,@4,@5)";
         SqlCommand comm = new SqlCommand();
         comm.Connection = database;
         comm.CommandType = CommandType.Text;
@@ -299,6 +349,7 @@ input[type=text]
         comm.Parameters.AddWithValue("@2", orange);
         comm.Parameters.AddWithValue("@3", purple);
         comm.Parameters.AddWithValue("@4", green);
+        comm.Parameters.AddWithValue("@5", color);
 
         reader2 = comm.ExecuteReader();
 
@@ -307,12 +358,41 @@ input[type=text]
 
         //Send Email Code Here
 
-        Response.Redirect("http://petready.org.nau.edu/Find-a-Pet");
+        subject = "PetReady Questionnaire Report for " + displayName;
+        body = "PetReady Questionnaire Report for " + displayName + "\n" +
+        "\nThey match to: " + color + " dogs\n" +
+        "\nHave you owned a dog before: " + question_1 + "\n" +
+        "\nThe last time you had a dog was...: " + question_2 + "\n" +
+        "\nYour dog needs to get along with other dogs: " + question_3 + "\n" +
+        "\nMy dog needs to be good with: " + question_4 + "\n" +
+        "\nYour dog will primarily be an...: " + question_5 + "\n" +
+        "\nAbout how many hours will your dog be outside per day: " + question_6 + "\n" +
+        "\nYour dog needs to be able to be alone (per day)...: " + question_7 + "\n" +
+        "\nWhen you are at home, you want your dog to be at your side...: " + question_8 + "\n" +
+        "\nWhen not at home, you want your dog to spend their time...: " + question_9 + "\n" +
+        "\nAre you looking for a guard dog: " + question_10 + "\n" +
+        "\nAre you looking for a hunting or herding dog: " + question_11 + "\n" +
+        "\nDo you want your dog to be very enthusiastic in the way they show they love peoplet: " + question_12 + "\n" +
+        "\nDo you want your dog to be playful: " + question_13 + "\n" +
+        "\nDo you want your dog to be laid back: " + question_14 + "\n" +
+        "\nAre you comfortable doing some training with your dog to improve manners such as jumping, stealing food, and pulling on the leash: " + question_15 + "\n" +
+        "\nDo you (or your children) want to participate in Agility, Flyball, or Obedience with your dog: " + question_16 + "\n" +
+        "\nAre you interested in a dog with special needs (medical or behavioral): " + question_17 + "\n" +
+        "\nIt is most important to me that my dog... : " + question_18;
+
+        if(contact.Equals("Yes")){
+          DotNetNuke.Services.Mail.Mail.SendEmail("petready.webmaster@gmail.com", "rs854@nau.edu", subject, body);
+        }
+
 
       }
       catch
       {
 
+      }
+      finally
+      {
+         Response.Redirect("http://petready.org.nau.edu/Find-A-Pet");
       }
     }
 }

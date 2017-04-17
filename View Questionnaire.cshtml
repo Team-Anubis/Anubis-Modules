@@ -5,6 +5,12 @@
 @using System.Diagnostics;
 @using System.Data;
 @using System.Data.Common;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Net.Mail;
+@using System.Net;
+
 
 @*Copyright (c) 2017 by Anubis *@
 
@@ -35,6 +41,12 @@
   string question_20 = "";
   string question_21 = "";
   string question_22 = "";
+  string body = "";
+  string subject = "";
+  string contact = "";
+  string readiness_level = "";
+
+  var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
 
   var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
   var selectQueryString = "SELECT * FROM Questions ORDER BY Question_ID";
@@ -116,6 +128,8 @@
     {
       // Always call Close when done reading.
       reader.Close();
+      <h3>Would you like to send your readiness information to the local Shelters?</h3>
+      <label style="font-size:medium"><input style="height:20px;width:20px" type="checkbox" name="contact" value="Yes" > Yes</label><br></br>
       <input type="submit" class="btn btn-success btn-lg" name="submit" value="Submit" />
       <input type="reset" class="btn btn-danger btn-lg" name="reset" value="Restart" />
 
@@ -125,7 +139,7 @@
 
       try
       {
-        //gets values from form
+
         question_1 = Request.Form["question_1"];
           //not a questions for determining readiness
 
@@ -181,7 +195,8 @@
 
         question_22 = Request.Form["question_22"];
 
-          //performs matching
+        contact = Request.Form["contact"];
+
           if(question_3.Equals("Yes"))
           {
             readiness = readiness + 2;
@@ -281,7 +296,6 @@
             readiness += 2;
           }
 
-        //creates the database connection and performs the query
         SqlDataReader reader2;
         var insertQueryString = "INSERT INTO Responses (User_ID,Readiness) VALUES (@1,@2)";
         SqlCommand comm = new SqlCommand();
@@ -296,9 +310,44 @@
         database.Close();
         reader2.Close();
 
-        //Send Email Code Here
+        if(readiness >= 13){
+          readiness_level = "They are PetReady!";
+        }
+        if(readiness < 13){
+          readiness_level = "Sadly they are not PetReady.";
+        }
 
-        Response.Redirect("http://petready.org.nau.edu/Find-a-Pet");
+        subject = "PetReady Questionnaire Report for " + displayName;
+        body = "PetReady Questionnaire Report for " + displayName + "\n" +
+        "\n" +readiness_level + "\n" +
+        "\nGender: " + question_1 + "\n" +
+        "\nWhich of the following fot your life situation: " + question_2 + "\n" +
+        "\nDo you or anyone that lives with you have allergies to dogs: " + question_3 + "\n" +
+        "\nDo you or anyone that lives with you have allergies to cats: " + question_4 + "\n" +
+        "\nAre you planning on moving in the next 12 months: " + question_5 + "\n" +
+        "\nAre you planning on leaving the country in the next 24 months for an extended period of time: " + question_6 + "\n" +
+        "\nAre you employed: " + question_7 + "\n" +
+        "\nIf employed, what is your typical shift type: " + question_8 + "\n" +
+        "\nDo you have a budget in mind for your new pet: " + question_9 + "\n" +
+        "\nWhat is your yearly pet budget: " + question_10 + "\n" +
+        "\nWhat is your emergency budget: " + question_11 + "\n" +
+        "\nWhat lifestyle fits you best: " + question_12 + "\n" +
+        "\nHow much free time do you have in a given day: " + question_13 + "\n" +
+        "\nWhat type of home do you live in: " + question_14 + "\n" +
+        "\nIs there a pet deposit where you live: " + question_15 + "\n" +
+        "\nIs there a monthly pet fee where you live: " + question_16 + "\n" +
+        "\nAre there any restrictions on breed, size, weight, or type where you live: " + question_17 + "\n" +
+        "\nDo you have a yard or access to a dog park: " + question_18 + "\n" +
+        "\nHave you ever owned a pet before: " + question_19 + "\n" +
+        "\nHave you kept your current/previous pets up to date with vaccinations: " + question_20 + "\n" +
+        "\nHave you ever surrendered a pet before: " + question_21 + "\n" +
+        "\nDo you plan to have cosmetically(voluntary) altering surgery performed on your new pet(s)? " + question_22;
+
+
+        if(contact.Equals("Yes")){
+          DotNetNuke.Services.Mail.Mail.SendEmail("petready.webmaster@gmail.com", "rs854@nau.edu", subject, body);
+        }
+
 
       }
       catch
@@ -308,9 +357,13 @@
 
       finally
       {
-
+         Response.Redirect("http://petready.org.nau.edu/Find-A-Pet");
       }
     }
+}
+
+@{
+
 }
 
 
@@ -320,7 +373,7 @@
 
 <script>
 $('form').on('reset', function() {
-  console.log("dumb");
+  console.log("reset");
   return confirm("Are you sure you want to reset all questions");
 });
 </script>
