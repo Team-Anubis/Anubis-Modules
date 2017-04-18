@@ -47,6 +47,7 @@
   string readiness_level = "";
 
   var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
+  var userEmail = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().Email.ToString();
 
   var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
   var selectQueryString = "SELECT * FROM Questions ORDER BY Question_ID";
@@ -319,7 +320,8 @@
 
         subject = "PetReady Questionnaire Report for " + displayName;
         body = "PetReady Questionnaire Report for " + displayName + "\n" +
-        "\n" +readiness_level + "\n" +
+        "\nReply To: " + userEmail + "\n" +
+        "\nReadiness Level: " + readiness_level + "\n" +
         "\nGender: " + question_1 + "\n" +
         "\nWhich of the following fot your life situation: " + question_2 + "\n" +
         "\nDo you or anyone that lives with you have allergies to dogs: " + question_3 + "\n" +

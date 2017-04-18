@@ -52,6 +52,7 @@ input[type=text]
   string contact = "";
 
   var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
+  var userEmail = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().Email.ToString();
 
   var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
   var selectQueryString = "SELECT * FROM Cat_Questions ORDER BY Cat_Questions_ID";
@@ -436,6 +437,7 @@ input[type=text]
 
         subject = "PetReady canine-ality Report for " + displayName;
         body = "PetReady canine-ality Report for " + displayName + "\n" +
+        "\nReply To: " + userEmail + "\n" +
         "\nThey match to: " + color + " cats\n" +
         "\nWhat would you consider your household" + question_1 + "\n" +
         "\nAre you comfortable with a cat that likes to play “chase my ankles”and similar games: " + question_2 + "\n" +

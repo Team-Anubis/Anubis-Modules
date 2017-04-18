@@ -53,6 +53,7 @@ input[type=text]
   string contact = "";
 
   var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
+  var userEmail = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().Email.ToString();
 
   var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
   var selectQueryString = "SELECT * FROM Dog_Questions ORDER BY Dog_Question_ID";
@@ -360,6 +361,7 @@ input[type=text]
 
         subject = "PetReady Questionnaire Report for " + displayName;
         body = "PetReady Questionnaire Report for " + displayName + "\n" +
+        "\nReply To: " + userEmail + "\n" +
         "\nThey match to: " + color + " dogs\n" +
         "\nHave you owned a dog before: " + question_1 + "\n" +
         "\nThe last time you had a dog was...: " + question_2 + "\n" +
