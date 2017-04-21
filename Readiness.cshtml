@@ -54,26 +54,51 @@ A:visited
         {
           <h3>Want to see if you are PetReady and Meet Your Match&reg? Complete the questionnaire by pressing the icon below.</h3>
           <p class="text-center"><a href="/Account/Questionnaire"><img alt="" src="/Portals/0/grouped-large-icon-2x.png" style="width: 33%;" title="" /></a></p>
-          <h3>@readiness</h3>
         }
         if(readiness >= 13 & DBNull.Value != reader[1])
         {
-          <h1>Congratulations @displayName you are PetReady!</h1>
+          <h1>Congratulations @displayName, you are PetReady!</h1>
           <h2>To <em>Meet Your Match&reg</em> click on the buttons below.</h2>
-          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Feline-ality" >Meet Your Match&reg: Feline-ality&reg</a>
-          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Canine-ality" >Meet Your Match&reg: Caine-ality&reg</a>
+          <br></br>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+              <a class="btn btn-success btn-lg btn-block text-center" type="button" href="/Questionnaire/Feline-ality" >Meet Your Match&reg: Feline-ality&reg</a>
+            </div>
+            <div class="col-sm-4">
+              <a class="btn btn-success btn-lg btn-block text-center" type="button" href="/Questionnaire/Canine-ality" >Meet Your Match&reg: Canine-ality&reg</a>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
           <br></br>
         }
         if(readiness < 13 & DBNull.Value != reader[1])
         {
-          <h1>Congratulations @displayName you have been found to be a perfect match for fostering/volunteering. Apply to shelters near you below.</h1>
-          <a class="btn btn-success btn-lg text-center" type="button" href="/Get-Involved/Fostering-volunteering" >Click here to apply</a>
-          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire" >Retake Questionnaire</a>
+          <h1>Congratulations @displayName, you have been found to be a perfect match for fostering/volunteering. Apply to shelters near you below.</h1>
+          <br></br>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+              <a class="btn btn-success btn-lg btn-block text-center" type="button" href="/Get-Involved/Fostering-volunteering" > Click here to apply <span class="glyphicon glyphicon-pencil"></span></a>
+            </div>
+            <div class="col-sm-4">
+              <a class="btn btn-primary btn-lg btn-block text-center" type="button" href="/Questionnaire" >Retake Questionnaire <span class="glyphicon glyphicon-repeat"></span></a>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
           <br></br>
           <h3>Though you have been found to be a perfect match for fostering/volunteering, you can still meet your match below</h3>
-          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Canine-ality" >Meet Your Match&reg: Canine-ality&reg</a>
-          <a class="btn btn-success btn-lg text-center" type="button" href="/Questionnaire/Feline-ality" >Meet Your Match&reg: Feline-ality&reg</a>
           <br></br>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+              <a class="btn btn-success btn-lg btn-block text-center" type="button" href="/Questionnaire/Feline-ality" >Meet Your Match&reg: Feline-ality&reg</a>
+            </div>
+            <div class="col-sm-4">
+              <a class="btn btn-success btn-lg btn-block text-center" type="button" href="/Questionnaire/Canine-ality" >Meet Your Match&reg: Canine-ality&reg</a>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
         }
       }
     }
@@ -130,6 +155,8 @@ A:visited
       if(CatMax == Cat_orange)
       {
         <br></br>
+        <hr></hr>
+        <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Orange Cats.</h3>
         <div class="row">
@@ -149,10 +176,23 @@ A:visited
             <p>You're working on the computer? Let me press the keys. Reading the paper? I'll hold the pages down for you. Watching TV? I'll just plop in your lap so you can pet me. I love an orderly household, don't you? I'll help you with all your chores, and I'll help you relax when we're done. You'll wonder how you ever managed without me.</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
       }
 
       if(CatMax == Cat_green)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Green Cats.</h3>
@@ -173,10 +213,22 @@ A:visited
             <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
       if(CatMax == Cat_purple)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Purple Cats.</h3>
@@ -197,10 +249,22 @@ A:visited
             <p>Do you seek affection? I do! If you also like petting, purrs, and paws kneading your lap, I think we might have a LOT in common. I'm looking for "someone who enjoys quiet times and togetherness." Could that someone be you?</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
       if(CatMax == Cat_purple & CatMax == Cat_green)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Purple & Green Cats.</h3>
@@ -238,10 +302,22 @@ A:visited
             <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
       if(CatMax == Cat_purple & CatMax == Cat_orange)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Purple & Orange Cats.</h3>
@@ -279,9 +355,21 @@ A:visited
             <p>You're working on the computer? Let me press the keys. Reading the paper? I'll hold the pages down for you. Watching TV? I'll just plop in your lap so you can pet me. I love an orderly household, don't you? I'll help you with all your chores, and I'll help you relax when we're done. You'll wonder how you ever managed without me.</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
       if(CatMax == Cat_orange & CatMax == Cat_green)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Orange & Green Cats.</h3>
@@ -319,9 +407,21 @@ A:visited
           <h4>Leader of the Band</h4>
           <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
       if(CatMax == Cat_purple & CatMax == Cat_green & CatMax == Cat_orange)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Feline-ality&reg!</h2>
         <h3>Your match is to Purple & Green & Orange Cats.</h3>
@@ -376,6 +476,16 @@ A:visited
             <p>I'm a cat who does everything in a big way. I not only like to be in the middle of things - I like to lead the parade. I'm an adventurous cat, but I'll still make plenty of time to show you my affectionate side. I'm the demonstrative type, you might say. Want a cat who's brimming with confidence? That's me.</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Cats" >Second Chance: Available Cats</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Cats" >Coconino Humane: Available Cats</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
     }
@@ -425,6 +535,8 @@ A:visited
       if(DogMax == Dog_orange)
       {
         <br></br>
+        <hr></hr>
+        <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Orange Dogs.</h3>
         <div class="row">
@@ -444,10 +556,22 @@ A:visited
             <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
       if(DogMax == Dog_purple)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Purple Dogs.</h3>
@@ -468,10 +592,22 @@ A:visited
             <p>I've got the whole package — smart, fuzzy, four legs, love to learn and live to please. Go ahead, teach me anything. Sit, stay, balance your checkbook, I can do it all. Keep me entertained and I'll be yours forever. (Externally motivated)</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
       if(DogMax == Dog_green)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Green Dogs.</h3>
@@ -492,10 +628,22 @@ A:visited
             <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
 
       if(DogMax == Dog_purple & DogMax == Dog_green)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Purple & Green Dogs.</h3>
@@ -533,11 +681,23 @@ A:visited
             <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
 
       }
 
       if(DogMax == Dog_purple & DogMax == Dog_orange)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Purple & Orange Dogs.</h3>
@@ -575,10 +735,22 @@ A:visited
             <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
 
       }
       if(DogMax == Dog_orange & DogMax == Dog_green)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Orange & Green Dogs.</h3>
@@ -616,9 +788,21 @@ A:visited
             <p>Intelligent, independent, confident and clever, I prefer making my own decisions but will listen to you if you make a good case. We're partners in this adventure. Treat me like one and we'll both live happily ever after. (Internally motivated)</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
       }
       if(DogMax == Dog_purple & DogMax == Dog_green & DogMax == Dog_orange)
       {
+        <br></br>
+        <hr></hr>
         <br></br>
         <h2>Thank you for completing the <em>Meet Your Match&reg</em> Canine-ality&reg!</h2>
         <h3>Your match is to Purple & Green & Orange Dogs.</h3>
@@ -672,6 +856,16 @@ A:visited
             <h4>Goofball</h4>
             <p>I'm a fun-loving, happy-all-the-time, glass-is-half-full kind of dog looking for someone who loves to laugh and play around. Must have a great sense of humor and some time to spend with me. I'm a dog on a mission to please you. (Socially motivated)</p>
           </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Second-Chance-Dogs" >Second Chance: Available Dogs</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-info btn-lg text-center btn-block" type="button" href="/Get-Involved/Coconino-Humane-Association-Dogs" >Coconino Humane: Available Dogs</a>
+          </div>
+          <div class="col-sm-2"></div>
         </div>
       }
 
