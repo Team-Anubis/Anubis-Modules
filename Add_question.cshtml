@@ -151,7 +151,8 @@
     try
     {
 
-      SqlConnection database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+      var ConnectionString = DotNetNuke.Common.Utilities.Config.GetConnectionString();
+      SqlConnection database = new SqlConnection(ConnectionString);
       var databaseName = database.Database;
       SqlCommand cmd = new SqlCommand();
       SqlDataReader reader;

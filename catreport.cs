@@ -24,7 +24,9 @@
 
   SqlDataReader reader;
 
-  SqlConnection database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+  var ConnectionString = DotNetNuke.Common.Utilities.Config.GetConnectionString();
+
+  SqlConnection database = new SqlConnection(ConnectionString);
 
   cmd.CommandText = "Select Cat_Color, COUNT(*) as 'num' From CatResponses Group by Cat_Color";
 

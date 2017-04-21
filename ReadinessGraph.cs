@@ -24,7 +24,9 @@
 
   SqlDataReader reader;
 
-  SqlConnection database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+  var ConnectionString = DotNetNuke.Common.Utilities.Config.GetConnectionString();
+
+  SqlConnection database = new SqlConnection(ConnectionString);
 
   cmd.CommandText = "Select Readiness, COUNT(*) as 'num' From Responses Group by Readiness";
 

@@ -49,7 +49,9 @@
   var displayName = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().DisplayName.ToString();
   var userEmail = DotNetNuke.Entities.Users.UserController.GetCurrentUserInfo().Email.ToString();
 
-  var database = new SqlConnection("Data Source=gpsql.nau.froot.nau.edu,61707;Initial Catalog=petready;Integrated Security=True;");
+  var ConnectionString = DotNetNuke.Common.Utilities.Config.GetConnectionString();
+
+  var database = new SqlConnection(ConnectionString);
   var selectQueryString = "SELECT * FROM Questions ORDER BY Question_ID";
 
   SqlCommand command = new SqlCommand(selectQueryString, database);
