@@ -355,13 +355,26 @@ input[type=text]
 
         reader2 = comm.ExecuteReader();
 
-        database.Close();
         reader2.Close();
 
         //Send Email Code Here
 
-        subject = "PetReady Questionnaire Report for " + displayName;
-        body = "PetReady Questionnaire Report for " + displayName + "\n" +
+        SqlCommand Sheltercmd = new SqlCommand();
+
+        SqlDataReader Shelterreader;
+
+        Sheltercmd.CommandText = "Select partnered_Shelter_Email FROM partnered_Shelter";
+
+        Sheltercmd.CommandType = CommandType.Text;
+
+        Sheltercmd.Connection = database;
+
+        Shelterreader = Sheltercmd.ExecuteReader();
+
+        string stringTo = "";
+
+        subject = "PetReady Canine-ality Report for " + displayName;
+        body = "PetReady Canine-ality Report for " + displayName + "\n" +
         "\nReply To: " + userEmail + "\n" +
         "\nThey match to: " + color + " dogs\n" +
         "\nHave you owned a dog before: " + question_1 + "\n" +
@@ -383,10 +396,28 @@ input[type=text]
         "\nAre you interested in a dog with special needs (medical or behavioral): " + question_17 + "\n" +
         "\nIt is most important to me that my dog... : " + question_18;
 
-        if(contact.Equals("Yes")){
-          DotNetNuke.Services.Mail.Mail.SendEmail("petready.webmaster@gmail.com", "rs854@nau.edu", subject, body);
+        try
+        {
+          while(Shelterreader.Read())
+          {
+          stringTo += Shelterreader[0] + " ,";
+          }
+          stringTo = stringTo.TrimEnd(stringTo[stringTo.Length -1]);
         }
+        catch
+        {
 
+        }
+        finally
+        {
+          Shelterreader.Close();
+          database.Close();
+          if(contact.Equals("Yes"))
+          {
+            DotNetNuke.Services.Mail.Mail.SendEmail("petready.webmaster@gmail.com", stringTo, subject, body);
+          }
+
+        }
 
       }
       catch
