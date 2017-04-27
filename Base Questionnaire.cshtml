@@ -143,6 +143,56 @@
       try
       {
 
+        int readiness_Value_Perfect = 0;
+        int readiness_Value_Great = 0;
+        int readiness_Value_Good = 0;
+        int readiness_Value_Okay = 0;
+        int readiness_Value_Neutral = 0;
+        int readiness_Value_Flag = 0;
+        int readiness_Value_Yellow_Flag = 0;
+        int readiness_Value_Red_Flag = 0;
+        int readiness_Value_Restrict = 0;
+
+        var readinessQueryString = "SELECT * FROM readiness_Value";
+
+        SqlCommand cmd = new SqlCommand(readinessQueryString, database);
+        SqlDataReader readerReadiness = cmd.ExecuteReader();
+
+        try
+        {
+          while(readerReadiness.Read())
+          {
+            readiness_Value_Perfect = readerReadiness.GetInt32(1);
+            readiness_Value_Great = readerReadiness.GetInt32(2);
+            readiness_Value_Good = readerReadiness.GetInt32(3);
+            readiness_Value_Okay = readerReadiness.GetInt32(4);
+            readiness_Value_Neutral = readerReadiness.GetInt32(5);
+            readiness_Value_Flag = readerReadiness.GetInt32(6);
+            readiness_Value_Yellow_Flag = readerReadiness.GetInt32(7);
+            readiness_Value_Red_Flag = readerReadiness.GetInt32(8);
+            readiness_Value_Restrict = readerReadiness.GetInt32(9);
+          }
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+          readerReadiness.Close();
+          <p>@readiness_Value_Perfect
+          @readiness_Value_Great
+          @readiness_Value_Good
+          @readiness_Value_Okay
+          @readiness_Value_Neutral
+          @readiness_Value_Flag
+          @readiness_Value_Yellow_Flag
+          @readiness_Value_Red_Flag
+          @readiness_Value_Restrict</p>
+        }
+
+
+
         question_1 = Request.Form["question_1"];
           //not a questions for determining readiness
 
@@ -202,101 +252,101 @@
 
           if(question_3.Equals("Yes"))
           {
-            readiness = readiness + 2;
+            readiness += readiness_Value_Good;
           }
 
           if(question_4.Equals("No"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
 
           if(question_5.Equals("No"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_5.Equals("Yes"))
           {
-            readiness -= 1;
+            readiness += readiness_Value_Flag;
           }
 
           if(question_6.Equals("No"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_6.Equals("Yes"))
           {
-            readiness -= 4;
+            readiness += readiness_Value_Red_Flag;
           }
 
           if(question_7.Equals("Yes, full time"))
           {
-            readiness += 3;
+            readiness += readiness_Value_Great;
           }
           if(question_7.Equals("Yes, part time"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_7.Equals("Yes, seasonal or temporary"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_7.Equals("Maybe"))
           {
-            readiness += 1;
+            readiness += readiness_Value_Okay;
           }
 
           if(question_9.Equals("Yes"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_9.Equals("No"))
           {
-            readiness -= 1;
+            readiness += readiness_Value_Flag;
           }
 
           if(question_10.Equals("$1250/year") || question_10.Equals("$1000/year") || question_10.Equals("$750/year"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_10.Equals("$250/year") || question_10.Equals("$500/year"))
           {
-            readiness += 1;
+            readiness += readiness_Value_Okay;
           }
 
           if(question_11.Equals("$1250/year") || question_11.Equals("$1000/year") || question_11.Equals("$1750+/year") || question_11.Equals("$1500/year"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_11.Equals("$250/year") || question_11.Equals("$500/year") || question_11.Equals("$750/year"))
           {
-            readiness -= 1;
+            readiness += readiness_Value_Flag;
           }
 
           if(question_14.Equals("Apartment (2+ bedrooms)") || question_14.Equals("Apartment (studio/ single room)") || question_14.Equals("Condo") || question_14.Equals("Single family home"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
           if(question_14.Equals("Dorm/Resident hall"))
           {
-            readiness -= 15;
+            readiness += readiness_Value_Restrict;
           }
 
           if(question_21.Equals("Yes"))
           {
-            readiness -= 2;
+            readiness += readiness_Value_Flag;
           }
           if(question_21.Equals("No"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
 
           if(question_22.Equals("Yes"))
           {
-            readiness -= 2;
+            readiness += readiness_Value_Flag;
           }
           if(question_22.Equals("No"))
           {
-            readiness += 2;
+            readiness += readiness_Value_Good;
           }
 
         SqlDataReader reader2;
