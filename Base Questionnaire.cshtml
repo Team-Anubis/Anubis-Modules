@@ -19,6 +19,14 @@
 
 @{
   int readiness = 0;
+  int total_questions = 0;
+
+  List<string> questions = new List<string>();
+
+  //questions.Add("Test Question");
+
+  //questions.Item(1);
+
   string question_1 = "";
   string question_2 = "";
   string question_3 = "";
@@ -64,7 +72,10 @@
   {
     while (reader.Read())
     {
-    if (reader[3] != DBNull.Value){
+      // increment the total number of questions in the questionnaire
+      total_questions = total_questions + 1;
+
+      if (reader[3] != DBNull.Value){
             <h3>@reader[1] <span style="color: red">*</span></h3>
           }else{<h3>@reader[1]</h3>}
 
@@ -93,6 +104,9 @@
 
       }
 
+      // 14-21 readiness VALUES, 14->option 1 (reader 6)
+
+       // Populating question options
        if (DBNull.Value != reader[6])
         {
           <label style="font-size:medium"><input style="height:20px;width:20px" type="@reader[2]" name="question_@reader[0]" value="@reader[6]" data-toggle="modal" data-target="#@reader[0]" @reader[3]> @reader[6]</label><br></br>
@@ -191,7 +205,14 @@
           @readiness_Value_Restrict</p>
         }
 
+        int one = 1;
 
+        //questions.Insert(1, Request.Form["question_" + one.ToString()]);
+
+        // Add the question responses to the questions list
+        for (int i = 1; i <= total_questions; i++) {
+          questions.Insert(i, Request.Form["question_" + i.ToString()]);
+        }
 
         question_1 = Request.Form["question_1"];
           //not a questions for determining readiness
@@ -414,9 +435,9 @@
         {
           while(Shelterreader.Read())
           {
-          stringTo += Shelterreader[0] + " ,";
+            stringTo += Shelterreader[0] + " ,";
           }
-          stringTo = stringTo.TrimEnd(stringTo[stringTo.Length -1]);
+            stringTo = stringTo.TrimEnd(stringTo[stringTo.Length -1]);
         }
         catch
         {
