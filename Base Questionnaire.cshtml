@@ -23,32 +23,6 @@
 
   List<string> questions = new List<string>();
 
-  //questions.Add("Test Question");
-
-  //questions.Item(1);
-
-  string question_1 = "";
-  string question_2 = "";
-  string question_3 = "";
-  string question_4 = "";
-  string question_5 = "";
-  string question_6 = "";
-  string question_7 = "";
-  string question_8 = "";
-  string question_9 = "";
-  string question_10 = "";
-  string question_11 = "";
-  string question_12 = "";
-  string question_13 = "";
-  string question_14 = "";
-  string question_15 = "";
-  string question_16 = "";
-  string question_17 = "";
-  string question_18 = "";
-  string question_19 = "";
-  string question_20 = "";
-  string question_21 = "";
-  string question_22 = "";
   string body = "";
   string subject = "";
   string contact = "";
@@ -205,167 +179,110 @@
           @readiness_Value_Restrict</p>
         }
 
-        int one = 1;
-
-        //questions.Insert(1, Request.Form["question_" + one.ToString()]);
-
         // Add the question responses to the questions list
         for (int i = 1; i <= total_questions; i++) {
           questions.Insert(i, Request.Form["question_" + i.ToString()]);
         }
 
-        question_1 = Request.Form["question_1"];
-          //not a questions for determining readiness
-
-        question_2 = Request.Form["question_2"];
-          //not a questions for determining readiness
-
-        question_3 = Request.Form["question_3"];
-
-        question_4 = Request.Form["question_4"];
-
-        question_5 = Request.Form["question_5"];
-
-        question_6 = Request.Form["question_6"];
-
-        question_7 = Request.Form["question_7"];
-
-        question_8 = Request.Form["question_8"];
-        //not a questions for determining readiness
-
-        question_9 = Request.Form["question_9"];
-
-        question_10 = Request.Form["question_10"];
-
-        question_11 = Request.Form["question_11"];
-
-        question_12 = Request.Form["question_12"];
-        //not a questions for determining readiness
-
-        question_13 = Request.Form["question_13"];
-        //not a questions for determining readiness
-
-        question_14 = Request.Form["question_14"];
-
-        question_15 = Request.Form["question_15"];
-        //not a questions for determining readiness
-
-        question_16 = Request.Form["question_16"];
-        //not a questions for determining readiness
-
-        question_17 = Request.Form["question_17"];
-        //not a questions for determining readiness
-
-        question_18 = Request.Form["question_18"];
-        //not a questions for determining readiness
-
-        question_19 = Request.Form["question_19"];
-        //not a questions for determining readiness
-
-        question_20 = Request.Form["question_20"];
-        //not a questions for determining readiness
-
-        question_21 = Request.Form["question_21"];
-
-        question_22 = Request.Form["question_22"];
-
         contact = Request.Form["contact"];
 
-          if(question_3.Equals("Yes"))
+        string[] questions_array = questions.ToArray<string>();
+
+          if (questions_array[3].Equals("Yes"))
           {
             readiness += readiness_Value_Good;
           }
 
-          if(question_4.Equals("No"))
+          if(questions_array[4].Equals("No"))
           {
             readiness += readiness_Value_Good;
           }
 
-          if(question_5.Equals("No"))
+          if(questions_array[5].Equals("No"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_5.Equals("Yes"))
+          if(questions_array[5].Equals("Yes"))
           {
             readiness += readiness_Value_Flag;
           }
 
-          if(question_6.Equals("No"))
+          if(questions_array[6].Equals("No"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_6.Equals("Yes"))
+          if(questions_array[6].Equals("Yes"))
           {
             readiness += readiness_Value_Red_Flag;
           }
 
-          if(question_7.Equals("Yes, full time"))
+          if(questions_array[6].Equals("Yes, full time"))
           {
             readiness += readiness_Value_Great;
           }
-          if(question_7.Equals("Yes, part time"))
+          if(questions_array[7].Equals("Yes, part time"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_7.Equals("Yes, seasonal or temporary"))
+          if(questions_array[7].Equals("Yes, seasonal or temporary"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_7.Equals("Maybe"))
+          if(questions_array[7].Equals("Maybe"))
           {
             readiness += readiness_Value_Okay;
           }
 
-          if(question_9.Equals("Yes"))
+          if(questions_array[9].Equals("Yes"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_9.Equals("No"))
+          if(questions_array[9].Equals("No"))
           {
             readiness += readiness_Value_Flag;
           }
 
-          if(question_10.Equals("$1250/year") || question_10.Equals("$1000/year") || question_10.Equals("$750/year"))
+          if(questions_array[10].Equals("$1250/year") || questions_array[10].Equals("$1000/year") || questions_array[10].Equals("$750/year"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_10.Equals("$250/year") || question_10.Equals("$500/year"))
+          if(questions_array[10].Equals("$250/year") || questions_array[10].Equals("$500/year"))
           {
             readiness += readiness_Value_Okay;
           }
 
-          if(question_11.Equals("$1250/year") || question_11.Equals("$1000/year") || question_11.Equals("$1750+/year") || question_11.Equals("$1500/year"))
+          if(questions_array[11].Equals("$1250/year") || questions_array[11].Equals("$1000/year") || questions_array[11].Equals("$1750+/year") || questions_array[11].Equals("$1500/year"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_11.Equals("$250/year") || question_11.Equals("$500/year") || question_11.Equals("$750/year"))
+          if(questions_array[11].Equals("$250/year") || questions_array[11].Equals("$500/year") || questions_array[11].Equals("$750/year"))
           {
             readiness += readiness_Value_Flag;
           }
 
-          if(question_14.Equals("Apartment (2+ bedrooms)") || question_14.Equals("Apartment (studio/ single room)") || question_14.Equals("Condo") || question_14.Equals("Single family home"))
+          if(questions_array[14].Equals("Apartment (2+ bedrooms)") || questions_array[14].Equals("Apartment (studio/ single room)") || questions_array[14].Equals("Condo") || questions_array[14].Equals("Single family home"))
           {
             readiness += readiness_Value_Good;
           }
-          if(question_14.Equals("Dorm/Resident hall"))
+          if(questions_array[14].Equals("Dorm/Resident hall"))
           {
             readiness += readiness_Value_Restrict;
           }
 
-          if(question_21.Equals("Yes"))
+          if(questions_array[21].Equals("Yes"))
           {
             readiness += readiness_Value_Flag;
           }
-          if(question_21.Equals("No"))
+          if(questions_array[21].Equals("No"))
           {
             readiness += readiness_Value_Good;
           }
 
-          if(question_22.Equals("Yes"))
+          if(questions_array[22].Equals("Yes"))
           {
             readiness += readiness_Value_Flag;
           }
-          if(question_22.Equals("No"))
+          if(questions_array[22].Equals("No"))
           {
             readiness += readiness_Value_Good;
           }
@@ -408,28 +325,28 @@
         body = "PetReady Questionnaire Report for " + displayName + "\n" +
         "\nReply To: " + userEmail + "\n" +
         "\nReadiness Level: " + readiness_level + "\n" +
-        "\nGender: " + question_1 + "\n" +
-        "\nWhich of the following fit your life situation: " + question_2 + "\n" +
-        "\nDo you or anyone that lives with you have allergies to dogs: " + question_3 + "\n" +
-        "\nDo you or anyone that lives with you have allergies to cats: " + question_4 + "\n" +
-        "\nAre you planning on moving in the next 12 months: " + question_5 + "\n" +
-        "\nAre you planning on leaving the country in the next 24 months for an extended period of time: " + question_6 + "\n" +
-        "\nAre you employed: " + question_7 + "\n" +
-        "\nIf employed, what is your typical shift type: " + question_8 + "\n" +
-        "\nDo you have a budget in mind for your new pet: " + question_9 + "\n" +
-        "\nWhat is your yearly pet budget: " + question_10 + "\n" +
-        "\nWhat is your emergency budget: " + question_11 + "\n" +
-        "\nWhat lifestyle fits you best: " + question_12 + "\n" +
-        "\nHow much free time do you have in a given day: " + question_13 + "\n" +
-        "\nWhat type of home do you live in: " + question_14 + "\n" +
-        "\nIs there a pet deposit where you live: " + question_15 + "\n" +
-        "\nIs there a monthly pet fee where you live: " + question_16 + "\n" +
-        "\nAre there any restrictions on breed, size, weight, or type where you live: " + question_17 + "\n" +
-        "\nDo you have a yard or access to a dog park: " + question_18 + "\n" +
-        "\nHave you ever owned a pet before: " + question_19 + "\n" +
-        "\nHave you kept your current/previous pets up to date with vaccinations: " + question_20 + "\n" +
-        "\nHave you ever surrendered a pet before: " + question_21 + "\n" +
-        "\nDo you plan to have cosmetically(voluntary) altering surgery performed on your new pet(s)? " + question_22;
+        "\nGender: " + questions_array[1] + "\n" +
+        "\nWhich of the following fit your life situation: " + questions_array[2] + "\n" +
+        "\nDo you or anyone that lives with you have allergies to dogs: " + questions_array[3] + "\n" +
+        "\nDo you or anyone that lives with you have allergies to cats: " + questions_array[4] + "\n" +
+        "\nAre you planning on moving in the next 12 months: " + questions_array[5] + "\n" +
+        "\nAre you planning on leaving the country in the next 24 months for an extended period of time: " + questions_array[6] + "\n" +
+        "\nAre you employed: " + questions_array[7] + "\n" +
+        "\nIf employed, what is your typical shift type: " + questions_array[8] + "\n" +
+        "\nDo you have a budget in mind for your new pet: " + questions_array[9] + "\n" +
+        "\nWhat is your yearly pet budget: " + questions_array[10] + "\n" +
+        "\nWhat is your emergency budget: " + questions_array[11] + "\n" +
+        "\nWhat lifestyle fits you best: " + questions_array[12] + "\n" +
+        "\nHow much free time do you have in a given day: " + questions_array[13] + "\n" +
+        "\nWhat type of home do you live in: " + questions_array[14] + "\n" +
+        "\nIs there a pet deposit where you live: " + questions_array[15] + "\n" +
+        "\nIs there a monthly pet fee where you live: " + questions_array[16] + "\n" +
+        "\nAre there any restrictions on breed, size, weight, or type where you live: " + questions_array[17] + "\n" +
+        "\nDo you have a yard or access to a dog park: " + questions_array[18] + "\n" +
+        "\nHave you ever owned a pet before: " + questions_array[19] + "\n" +
+        "\nHave you kept your current/previous pets up to date with vaccinations: " + questions_array[20] + "\n" +
+        "\nHave you ever surrendered a pet before: " + questions_array[21] + "\n" +
+        "\nDo you plan to have cosmetically(voluntary) altering surgery performed on your new pet(s)? " + questions_array[22];
 
         try
         {
