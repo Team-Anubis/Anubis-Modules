@@ -97,42 +97,1081 @@
 
           <label for="Question_option_1">Question option 1:</label>
           <br></br>
-          <input type="text" name="Question_option_1" value="@reader2[6]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_1" Value="@reader2[6]" size="100%" maxlenght="255"/>
           <br></br>
+          <label for="Question_option_1_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(14) == 0)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == 5)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == 4)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == 2)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == 1)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == -1)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == -2)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(14) == -5)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+
+          }
+          if(reader2.GetInt32(14) == -1000)
+          {
+            <select name="Question_option_1_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
+          <br></br>
+
+
 
           <label for="Question_option_2">Question option 2:</label>
           <br></br>
-          <input type="text" name="Question_option_2" value="@reader2[7]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_2" Value="@reader2[7]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question_option_2_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(15) == 0)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == 5)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == 4)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == 2)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == 1)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == -1)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == -2)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(15) == -5)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+
+          }
+          if(reader2.GetInt32(15) == -1000)
+          {
+            <select name="Question_option_2_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
           <br></br>
 
           <label for="Question_option_3">Question option 3:</label>
           <br></br>
-          <input type="text" name="Question_option_3" value="@reader2[8]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_3" value="@reader2[8]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question_option_3_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(16) == 0)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == 5)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == 4)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == 2)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == 1)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == -1)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == -2)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == -5)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(16) == -1000)
+          {
+            <select name="Question_option_3_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
+
           <br></br>
 
           <label for="Question_option_4">Question option 4:</label>
           <br></br>
-          <input type="text" name="Question_option_4" value="@reader2[9]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_4" value="@reader2[9]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question_option_4_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(17) == 0)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == 5)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == 4)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == 2)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == 1)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == -1)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == -2)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == -5)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(17) == -1000)
+          {
+            <select name="Question_option_4_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
           <br></br>
 
           <label for="Question_option_5">Question option 5:</label>
           <br></br>
-          <input type="text" name="Question_option_5" value="@reader2[10]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_5" value="@reader2[10]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question_option_5_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(18) == 0)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == 5)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == 4)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == 2)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == 1)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == -1)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == -2)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == -5)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(18) == -1000)
+          {
+            <select name="Question_option_5_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
           <br></br>
 
           <label for="Question_option_6">Question option 6:</label>
           <br></br>
-          <input type="text" name="Question_option_6" value="@reader2[11]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_6" value="@reader2[11]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question_option_6_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(19) == 0)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == 5)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == 4)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == 2)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == 1)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == -1)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == -2)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == -5)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(19) == -1000)
+          {
+            <select name="Question_option_6_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
+
+          <br></br>
+          <label for="Question_option_7">Question option 7:</label>
+          <br></br>
+          <input type="text" name="Question_option_7" value="@reader2[12]" size="100%" maxlenght="255"/>
+          <br></br>
+          <label for="Question_option_7_readiness">Readiness Value</label>
+
+          if(reader2.GetInt32(20) == 0)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == 5)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == 4)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == 2)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == 1)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == -1)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == -2)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == -5)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(20) == -1000)
+          {
+            <select name="Question_option_7_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
+
+
           <br></br>
 
-          <label for="Question_option_6">Question option 7:</label>
+          <label for="Question_option_8">Question option 8:</label>
           <br></br>
-          <input type="text" name="Question_option_7" value="@reader2[12]"  size="100%" maxlenght="255"/>
+          <input type="text" name="Question_option_8" value="@reader2[13]" size="100%" maxlenght="255"/>
           <br></br>
+          <label for="Question_option_8_readiness">Readiness Value</label>
 
-          <label for="Question_option_6">Question option 8:</label>
-          <br></br>
-          <input type="text" name="Question_option_8" value="@reader2[13]"  size="100%" maxlenght="255"/>
+          if(reader2.GetInt32(21) == 0)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0" selected>Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == 5)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5" selected>Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == 4)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4" selected>Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == 2)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0" >Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2" selected>Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == 1)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1" selected>Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == -1)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1" selected>Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == -2)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2" selected>Yellow Flag</option>
+              <option value="-5">Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == -5)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" selected>Red Flag</option>
+              <option value="-1000">Restrict</option>
+            </select>
+          }
+          if(reader2.GetInt32(21) == -1000)
+          {
+            <select name="Question_option_8_readiness">
+              <option value="0">Neutral</option>
+              <option value="5">Perfect</option>
+              <option value="4">Great</option>
+              <option value="2">Good</option>
+              <option value="1">Okay</option>
+              <option value="-1">Flag</option>
+              <option value="-2">Yellow Flag</option>
+              <option value="-5" >Red Flag</option>
+              <option value="-1000" selected>Restrict</option>
+            </select>
+          }
           <br></br>
 
           <input type="submit"  class="btn btn-success btn-lg" name="Update" value="Update Question"/>
@@ -162,8 +1201,14 @@
     string Question_option_6 = "";
     string Question_option_7 = "";
     string Question_option_8 = "";
-
-    <h1>@Question</h1>
+    int Question_option_1_readiness = 0;
+    int Question_option_2_readiness = 0;
+    int Question_option_3_readiness = 0;
+    int Question_option_4_readiness = 0;
+    int Question_option_5_readiness = 0;
+    int Question_option_6_readiness = 0;
+    int Question_option_7_readiness = 0;
+    int Question_option_8_readiness = 0;
 
     if(IsPost)
     {
@@ -179,6 +1224,14 @@
       Question_option_6 = Request.Form["Question_option_6"];
       Question_option_7 = Request.Form["Question_option_7"];
       Question_option_8 = Request.Form["Question_option_8"];
+      Question_option_1_readiness = Convert.ToInt32(Request.Form["Question_option_1_readiness"]);
+      Question_option_2_readiness = Convert.ToInt32(Request.Form["Question_option_2_readiness"]);
+      Question_option_3_readiness = Convert.ToInt32(Request.Form["Question_option_3_readiness"]);
+      Question_option_4_readiness = Convert.ToInt32(Request.Form["Question_option_4_readiness"]);
+      Question_option_5_readiness = Convert.ToInt32(Request.Form["Question_option_5_readiness"]);
+      Question_option_6_readiness = Convert.ToInt32(Request.Form["Question_option_6_readiness"]);
+      Question_option_7_readiness = Convert.ToInt32(Request.Form["Question_option_7_readiness"]);
+      Question_option_8_readiness = Convert.ToInt32(Request.Form["Question_option_8_readiness"]);
 
       try
       {
@@ -199,8 +1252,16 @@
         cmd2.Parameters.Add(new SqlParameter("@10", string.IsNullOrEmpty(Question_option_7) ? (object)DBNull.Value : Question_option_7));
         cmd2.Parameters.Add(new SqlParameter("@11", string.IsNullOrEmpty(Question_option_8) ? (object)DBNull.Value : Question_option_8));
         cmd2.Parameters.Add(new SqlParameter("@12", string.IsNullOrEmpty(current_selection) ? (object)DBNull.Value : current_selection));
+        cmd2.Parameters.AddWithValue("@13", Question_option_1_readiness);
+        cmd2.Parameters.AddWithValue("@14", Question_option_2_readiness);
+        cmd2.Parameters.AddWithValue("@15", Question_option_3_readiness);
+        cmd2.Parameters.AddWithValue("@16", Question_option_4_readiness);
+        cmd2.Parameters.AddWithValue("@17", Question_option_5_readiness);
+        cmd2.Parameters.AddWithValue("@18", Question_option_6_readiness);
+        cmd2.Parameters.AddWithValue("@19", Question_option_7_readiness);
+        cmd2.Parameters.AddWithValue("@20", Question_option_8_readiness);
 
-        cmd2.CommandText = "UPDATE Questions SET Question = @1, Question_help_title = @2, Question_help_text = @3, Question_option_1 = @4, Question_option_2 = @5, Question_option_3 = @6, Question_option_4 = @7, Question_option_5 = @8, Question_option_6 = @9, Question_option_7 = @10, Question_option_8 = @11 WHERE (Question_ID = @12)";
+        cmd2.CommandText = "UPDATE Questions SET Question = @1, Question_help_title = @2, Question_help_text = @3, Question_option_1 = @4, Question_option_2 = @5, Question_option_3 = @6, Question_option_4 = @7, Question_option_5 = @8, Question_option_6 = @9, Question_option_7 = @10, Question_option_8 = @11, Question_option_1_readiness = @13, Question_option_2_readiness = @14, Question_option_3_readiness = @15, Question_option_4_readiness = @16, Question_option_5_readiness = @17, Question_option_6_readiness = @18, Question_option_7_readiness = @19, Question_option_8_readiness = @20 WHERE (Question_ID = @12)";
 
         cmd2.CommandType = CommandType.Text;
 
