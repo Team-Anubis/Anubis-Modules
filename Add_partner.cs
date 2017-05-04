@@ -13,15 +13,15 @@
     <fieldset>
       <h2>Add A New Partnered Shelter</h2>
       <div>
-        <label for="Question">Shelter Name:</label>
+        <label for="Question">Shelter Name:<span style="color:red">*</span></label>
         <br></br>
         <input type="text" name="Shelter_Name" value="" size="100%" maxlenght="255" required />
         <br></br>
       </div>
       <div>
-        <label for="Question">Shelter email:</label>
+        <label for="Question">Shelter email:<span style="color:red">*</span></label>
         <br></br>
-        <input type="email" name="Shelter_email" value="" size="100%" maxlenght="255"/>
+        <input type="email" name="Shelter_email" value="" size="100%" maxlenght="255" required/>
         <br></br>
       </div>
     <input type="submit" class="btn btn-success btn-lg" name="Insert" value="Add Shelter"/>
@@ -34,6 +34,8 @@
 
   string Shelter_Name = "";
   string Shelter_email = "";
+  string body = "Congratulations you have been added as a partnered shelter to the PetReady website. If you feel this is a mistake please contact the webmaster at petready.webmaster@gmail.com.";
+  string subject = "Added as PetReady partner";
 
 
   if(IsPost){
@@ -41,10 +43,10 @@
     Shelter_Name = Request.Form["Shelter_Name"];
     Shelter_email = Request.Form["Shelter_email"];
 
-    <h3>You just added</h3>
+    <h3>You just added, and confirmation email has been sent</h3>
     <p>
-      Question Text: @Shelter_Name <br></br>
-      Question type: @Shelter_email <br></br>
+      Shelter Name: @Shelter_Name <br></br>
+      Shelter Email: @Shelter_email <br></br>
     </p>
 
 
@@ -78,6 +80,8 @@
     }
     finally
     {
+
+      DotNetNuke.Services.Mail.Mail.SendEmail("petready.webmaster@gmail.com", Shelter_email, subject, body);
 
     }
 
